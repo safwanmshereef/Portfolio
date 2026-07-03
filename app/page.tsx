@@ -4,7 +4,9 @@ import { useEffect, useState, useRef } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import Hero from "@/components/Hero";
 import SkillTree from "@/components/SkillTree";
+import Experience from "@/components/Experience";
 import Projects from "@/components/Projects";
+import F1MiniGame from "@/components/F1MiniGame";
 import Lifestyle from "@/components/Lifestyle";
 import { Trophy } from "lucide-react";
 
@@ -35,7 +37,9 @@ export default function Home() {
     <main className="relative w-full overflow-hidden">
       <Hero />
       <SkillTree />
+      <Experience />
       <Projects />
+      <F1MiniGame />
       <Lifestyle />
 
       {/* Hidden trigger div for the achievement */}

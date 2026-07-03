@@ -72,11 +72,11 @@ export default function Hero() {
           initial={{ opacity: 0, scale: 0.9 }}
           animate={{ opacity: 1, scale: 1 }}
           transition={{ delay: 0.3 }}
-          className="relative w-32 h-32 md:w-40 md:h-40 rounded-full overflow-hidden border-4 manga-panel shadow-anime interactive group"
-          style={{ borderColor: selectedChar.color }}
+          className="relative w-32 h-32 md:w-40 md:h-40 rounded-full overflow-hidden border-4 manga-panel shadow-[0_0_20px_rgba(0,0,0,0.5)] interactive group"
+          style={{ borderColor: selectedChar.color, boxShadow: `0 0 20px ${selectedChar.color}80` }}
         >
-          <img src="/assets/safwan-portrait.jpg" alt="Safwan Shereef Profile" className="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-500" />
-          <div className="absolute inset-0 bg-gradient-to-t from-ink/60 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none" />
+          <img src="/assets/safwan-portrait.jpg" alt="Safwan Shereef Profile" className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110" />
+          <div className="absolute inset-0 bg-gradient-to-t from-ink/40 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none" />
         </motion.div>
 
         {/* Identity Vectors */}

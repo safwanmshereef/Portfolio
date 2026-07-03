@@ -68,20 +68,24 @@ export default function F1MiniGame() {
   }, [isPlaying, gameOver, carLane]);
 
   return (
-    <div className="w-full max-w-md mx-auto mt-8 relative border-4 border-ferrari rounded-lg overflow-hidden h-[400px] bg-slate">
-      {/* Background Track */}
-      <div className="absolute inset-0 flex justify-evenly opacity-20">
-        <div className="w-1 bg-white h-full" style={{ backgroundImage: 'var(--race-stripes)' }} />
-        <div className="w-1 bg-white h-full" style={{ backgroundImage: 'var(--race-stripes)' }} />
+    <div className="w-full max-w-2xl mx-auto my-16 relative border-4 border-ferrari rounded-lg overflow-hidden h-[500px] bg-[#1a1a1a]">
+      {/* Background Track with Animation */}
+      <div className={`absolute inset-0 flex justify-evenly opacity-30 ${isPlaying && !gameOver ? 'animate-[pulse_0.1s_ease-in-out_infinite]' : ''}`}>
+        <div className="w-2 bg-white h-full border-x border-gray-400 border-dashed" />
+        <div className="w-2 bg-white h-full border-x border-gray-400 border-dashed" />
       </div>
 
+      {/* Track edges */}
+      <div className="absolute left-0 top-0 bottom-0 w-4 bg-[repeating-linear-gradient(45deg,#ff0000,#ff0000_10px,#ffffff_10px,#ffffff_20px)]" />
+      <div className="absolute right-0 top-0 bottom-0 w-4 bg-[repeating-linear-gradient(45deg,#ff0000,#ff0000_10px,#ffffff_10px,#ffffff_20px)]" />
+
       {!isPlaying && !gameOver && (
-        <div className="absolute inset-0 flex flex-col items-center justify-center bg-ink/80 z-20">
-          <Flag size={48} className="text-ferrari mb-4" />
-          <h3 className="font-display font-bold text-xl uppercase mb-2">Grand Prix Override</h3>
-          <p className="font-mono text-xs text-cream/70 mb-6 text-center px-8">Use Left/Right arrows to dodge barriers.<br/>Drive like Senna.</p>
-          <button onClick={startGame} className="flex items-center space-x-2 bg-ferrari text-white px-6 py-3 font-bold uppercase tracking-wider interactive hover:bg-ferrari/80">
-            <Play size={16} /> <span>Start Engine</span>
+        <div className="absolute inset-0 flex flex-col items-center justify-center bg-ink/90 z-20 backdrop-blur-sm">
+          <Flag size={64} className="text-ferrari mb-4" />
+          <h3 className="font-display font-bold text-3xl uppercase mb-2 text-white shadow-glow">F1 Grand Prix Module</h3>
+          <p className="font-mono text-sm text-cream mb-8 text-center px-8">Use <span className="text-radiant-gold">Left/Right</span> arrows to dodge barriers.<br/>Drive like Hamilton, Verstappen, or Senna.</p>
+          <button onClick={startGame} className="flex items-center space-x-2 bg-ferrari text-white px-8 py-4 font-bold uppercase tracking-wider interactive hover:bg-red-700 transition-colors shadow-[0_0_20px_rgba(225,6,0,0.5)]">
+            <Play size={20} /> <span>Start Engine</span>
           </button>
         </div>
       )}
@@ -121,15 +125,32 @@ export default function F1MiniGame() {
 
       {/* Car */}
       <div
-        className="absolute bottom-4 w-1/3 flex justify-center transition-all duration-100 ease-out z-10"
+        className="absolute bottom-6 w-1/3 flex justify-center transition-all duration-150 ease-out z-10"
         style={{ left: `${carLane * 33.33}%` }}
       >
-        <div className="w-10 h-16 bg-ferrari rounded-t-xl rounded-b-sm border-2 border-white relative shadow-[0_0_15px_#e10600]">
-           {/* Simple F1 car representation */}
-           <div className="absolute top-2 left-1/2 -translate-x-1/2 w-4 h-4 bg-ink rounded-full" />
-           <div className="absolute -left-2 top-4 w-2 h-6 bg-ink rounded" />
-           <div className="absolute -right-2 top-4 w-2 h-6 bg-ink rounded" />
-           <div className="absolute bottom-0 w-full h-2 bg-black" />
+        {/* Improved F1 Car Representation */}
+        <div className="relative w-16 h-28 flex flex-col items-center">
+           {/* Front Wing */}
+           <div className="w-14 h-3 bg-black rounded-sm border-b-2 border-ferrari shadow-[0_0_10px_#e10600]" />
+           {/* Nose */}
+           <div className="w-4 h-8 bg-ferrari" />
+           {/* Cockpit & Halo */}
+           <div className="w-8 h-10 bg-ferrari rounded-t-full relative flex justify-center border-x-2 border-white">
+              <div className="absolute top-2 w-4 h-4 bg-black rounded-full" /> {/* Driver Helmet */}
+              <div className="absolute top-1 w-6 h-6 border border-gray-400 rounded-t-full rounded-b-none pointer-events-none" /> {/* Halo */}
+           </div>
+           {/* Sidepods */}
+           <div className="absolute top-[40px] w-14 h-10 flex justify-between">
+              <div className="w-3 h-full bg-red-800 rounded-l" />
+              <div className="w-3 h-full bg-red-800 rounded-r" />
+           </div>
+           {/* Wheels */}
+           <div className="absolute top-2 -left-1 w-2 h-6 bg-black rounded-sm" />
+           <div className="absolute top-2 -right-1 w-2 h-6 bg-black rounded-sm" />
+           <div className="absolute bottom-2 -left-1 w-3 h-8 bg-black rounded-sm" />
+           <div className="absolute bottom-2 -right-1 w-3 h-8 bg-black rounded-sm" />
+           {/* Rear Wing */}
+           <div className="w-12 h-4 bg-black rounded-sm mt-auto border-t border-ferrari" />
         </div>
       </div>
     </div>
