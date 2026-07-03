@@ -67,6 +67,18 @@ export default function Hero() {
           </motion.p>
         </div>
 
+        {/* Profile Image (Aesthetic) */}
+        <motion.div
+          initial={{ opacity: 0, scale: 0.9 }}
+          animate={{ opacity: 1, scale: 1 }}
+          transition={{ delay: 0.3 }}
+          className="relative w-32 h-32 md:w-40 md:h-40 rounded-full overflow-hidden border-4 manga-panel shadow-anime interactive group"
+          style={{ borderColor: selectedChar.color }}
+        >
+          <img src="/assets/safwan-portrait.jpg" alt="Safwan Shereef Profile" className="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-500" />
+          <div className="absolute inset-0 bg-gradient-to-t from-ink/60 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none" />
+        </motion.div>
+
         {/* Identity Vectors */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
@@ -109,6 +121,9 @@ export default function Hero() {
           </a>
           <a href="https://github.com/safwanmshereef" target="_blank" rel="noopener noreferrer" className="px-6 py-3 bg-cream text-ink font-bold uppercase tracking-wider interactive">
             Init GitHub
+          </a>
+          <a href="https://www.linkedin.com/in/safwan-shereef/" target="_blank" rel="noopener noreferrer" className="px-6 py-3 bg-[#0A66C2] text-cream font-bold uppercase tracking-wider interactive">
+            LinkedIn Link
           </a>
         </motion.div>
       </div>
