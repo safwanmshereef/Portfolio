@@ -44,6 +44,13 @@ const projects: Project[] = [
     stack: "Python",
     description: "Financial analytics dashboard and monitoring pipeline.",
     githubUrl: "https://github.com/safwanmshereef/Finance-Dashboard",
+  },
+  {
+    id: "discord_bot",
+    title: "Zenturio Discord Bot",
+    stack: "Python • Discord.py • OpenAI API",
+    description: "An intelligent Discord bot equipped with OpenAI API, enabling it to answer queries directly in server channels with seamless integration and state management.",
+    githubUrl: "https://github.com/safwanmshereef/ZenturioBot",
   }
 ];
 
