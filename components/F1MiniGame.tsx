@@ -68,7 +68,13 @@ export default function F1MiniGame() {
   }, [isPlaying, gameOver, carLane]);
 
   return (
-    <div className="w-full max-w-2xl mx-auto my-16 relative border-4 border-ferrari rounded-lg overflow-hidden h-[500px] bg-[#1a1a1a]">
+    <div className="w-full max-w-2xl mx-auto my-32 relative border-8 border-ferrari rounded-lg overflow-hidden h-[600px] bg-[#1a1a1a] shadow-[0_0_50px_rgba(225,6,0,0.4)] interactive">
+      {/* Title above game to make it super noticeable */}
+      <div className="absolute top-0 left-1/2 -translate-x-1/2 -translate-y-full pb-4 text-center w-full z-30 pointer-events-none">
+         <h2 className="text-4xl md:text-5xl font-display font-bold text-transparent bg-clip-text bg-gradient-to-r from-ferrari via-radiant-gold to-ferrari animate-pulse drop-shadow-[0_0_10px_rgba(225,6,0,0.8)] uppercase tracking-widest">
+            F1 Reflex Challenge
+         </h2>
+      </div>
       {/* Background Track with Animation */}
       <div className={`absolute inset-0 flex justify-evenly opacity-30 ${isPlaying && !gameOver ? 'animate-[pulse_0.1s_ease-in-out_infinite]' : ''}`}>
         <div className="w-2 bg-white h-full border-x border-gray-400 border-dashed" />

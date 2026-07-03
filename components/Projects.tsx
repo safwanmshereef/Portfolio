@@ -36,22 +36,42 @@ const projects: Project[] = [
     githubUrl: "https://github.com/safwanmshereef/Hybrid-RAG-AI-Assistant",
   },
   {
-    id: "finance",
-    title: "Finance-Dashboard",
-    stack: "FastAPI • SQLAlchemy • Postgres • Streamlit",
-    description: "A full-stack decoupled finance platform demonstrating sophisticated role-based access control (Viewer, Analyst, Admin) alongside real-time data persistence and analytics.",
+    id: "nutri",
+    title: "NUTRI VISION",
+    stack: "Python • Streamlit • YOLOv8 • Groq LLM",
+    description: "An advanced, fully autonomous meal analysis system utilizing YOLOv8 computer vision and Groq-powered LLMs to calculate intricate nutritional profiles in real-time.",
     features: [
-      "🔐 Advanced RBAC: Granular permissions for admins, analysts, and viewers over API endpoints.",
-      "📊 Date-Range Analytics: Dashboard summary with monthly budget trackers and utilization indicators.",
-      "🔍 Deep Search: Records explorer querying across categories and notes.",
-      "📈 Export & Reporting: One-click CSV exports from filtered tables."
+      "👁️ Computer Vision: Custom-trained YOLOv8 model deployed for instant, high-accuracy food item bounding box detection (achieved 0.81 mAP50-95).",
+      "🧠 LLM Integration: Integrates LLaMA 3.1 70B Versatile via Groq API for lightning-fast, context-aware nutritional breakdowns.",
+      "⚙️ OCR & Analysis: Features fallback OCR reading for packaged goods and detailed macro/micronutrient estimation.",
+      "🎨 UI Framework: A heavily customized Streamlit application overcoming standard limitations via custom CSS for a premium, responsive feel."
     ],
     deepDive: [
-      "Developed a clean, layered FastAPI backend (routers, schemas, models, database) relying on strict Pydantic constraints and customized HTTP status error handling.",
-      "Established secure JWT-based authentication flows with full session state management via Streamlit.",
-      "Configured robust PostgreSQL deployments mapping ORM relationships between Users and Financial Records."
+      "Orchestrates a complex multi-model pipeline: User Input -> YOLOv8 Detection -> Heuristic Filtering -> Groq/LLaMA Prompting -> Output Render.",
+      "Significantly optimized system latency, bringing total turnaround time from image upload to full analysis down to under 3 seconds.",
+      "Implemented a robust prompt engineering strategy to enforce strict JSON schema outputs from the LLM, preventing parsing failures."
     ],
-    githubUrl: "https://github.com/safwanmshereef/Finance-Dashboard",
+    githubUrl: "https://github.com/safwanmshereef/NUTRI_VISION_DETAILED_FOOD_ANALYSIS_AI_FOR_HEALTH_AND_WELLNESS",
+    demoUrl: "https://safwanmshereef-nutri-vision-detailed-food--streamlit-app-i02n66.streamlit.app/",
+    iframeSupport: true
+  },
+  {
+    id: "finance",
+    title: "FINANCE INSIGHT",
+    stack: "Python • Streamlit • Gemini Flash 1.5",
+    description: "A secure, specialized financial analytics dashboard providing high-speed, LLM-driven insights for enterprise fiscal data streams.",
+    features: [
+      "⚡ Lightning Inference: Powered by Google's Gemini Flash 1.5 for immediate query responses and narrative generation.",
+      "🔒 Data Security: Architecture strictly separates core logic from the LLM, ensuring raw PII/financial data is never exposed to external models.",
+      "📊 Intelligent Analytics: Automatically generates executive summaries, anomaly detection reports, and trend forecasts.",
+      "🖥️ Dashboard: Clean, responsive UI built with Streamlit for visualizing complex fiscal data streams via interactive Plotly charts."
+    ],
+    deepDive: [
+      "Addresses critical enterprise concerns regarding LLM data leakage by decoupling heuristic analysis from narrative generation.",
+      "Implemented robust retry mechanisms and fallback logic for API rate limits and network instability.",
+      "Engineered specialized prompting to ensure the LLM strictly adheres to financial terminologies and avoids hallucinating numbers."
+    ],
+    githubUrl: "https://github.com/safwanmshereef/Finance_insight",
   },
   {
     id: "release_app",
@@ -126,33 +146,37 @@ const projects: Project[] = [
   },
   {
     id: "store_app",
-    title: "Store Management System (Internship)",
-    stack: "Next.js • Tailwind v4 • FastAPI • PostgreSQL",
-    description: "An operational enterprise platform governing daily store compliances. Connects an OTP-secured Next.js frontend with an advanced stock verification FastAPI engine.",
+    title: "STORE APP ANALYTICS",
+    stack: "Python • Pandas • Scikit-Learn • Plotly",
+    description: "An end-to-end data science project analyzing retail application performance, user retention, and sales forecasting using machine learning.",
     features: [
-      "📦 Daily Stock Engine: Generates daily audit batches cross-referencing Freshivores catalog data against system stock.",
-      "🔄 Carryover Logic: Intelligently pushes unresolved stock discrepancies into next-day verification batches.",
-      "🔐 Role-based Routing: Tailored workflows for Admin, Manager, and Operational roles using JWT & OTP.",
-      "📊 GoFrugal Integration: Seamlessly validates physical manager counts against central ERP system values."
+      "📊 Exploratory Data Analysis: Comprehensive EDA using Pandas and Seaborn to uncover hidden seasonal trends.",
+      "🤖 Predictive Modeling: Trained Random Forest and Gradient Boosting models (Scikit-Learn) to forecast future application engagement.",
+      "📈 Interactive Visualizations: Built dynamic, drill-down capable dashboards using Plotly to present findings to stakeholders.",
+      "🧹 Data Wrangling: Complex ETL pipelines to clean, normalize, and impute missing values across millions of rows."
     ],
     deepDive: [
-      "Engineered a resilient background scheduler that continuously aggregates daily mismatch variances, triggering threshold-based notifications.",
-      "Built a secure validation layer translating GoFrugal/Zoho catalog items into structured, paginated Next.js admin review screens."
+      "Transformed raw, noisy application telemetry logs into actionable business intelligence metrics.",
+      "Handled significant class imbalance in user churn prediction by utilizing SMOTE and adjusting classification thresholds.",
+      "Packaged the entire analysis into reproducible Jupyter Notebooks with extensive markdown documentation for peer review."
     ],
-    githubUrl: "https://github.com/safwanmshereef/store-application",
+    githubUrl: "https://github.com/safwanmshereef/STOREAPP",
   },
   {
     id: "fruit_veggie",
     title: "Fruit Veggie Identifier",
     stack: "Python • OpenCV • TensorFlow • Streamlit",
-    description: "A lightweight Computer Vision web application processing live webcam streams to classify fruits and vegetables in real-time.",
+    description: "A real-time, edge-capable computer vision engine designed for rapid classification and nutritional estimation of organic produce.",
     features: [
-      "📷 Live CV Feed: Captures frame-by-frame data via OpenCV to run continuous inference.",
-      "🧠 TensorFlow Core: Utilizes a custom-trained model (.h5) to identify specific grocery items.",
-      "🍎 Calorie Estimation: Overlays fundamental caloric and nutritional estimates onto detected items."
+      "📷 Live CV Feed: Captures frame-by-frame image data via OpenCV to run continuous inference loops.",
+      "🧠 Deep Learning Core: Utilizes a custom-trained CNN model (.h5 format via Keras/TensorFlow) optimized for low-latency predictions.",
+      "🍎 Calorie Estimation: Overlays fundamental caloric and macro-nutritional estimates directly onto detected items in real-time.",
+      "⚙️ Data Augmentation: Model trained on a highly augmented dataset to ensure robustness against varying lighting and angles."
     ],
     deepDive: [
-      "Demonstrates core edge-deployment techniques bridging specialized deep learning models (TensorFlow) into accessible web environments (Streamlit)."
+      "Demonstrates core edge-deployment techniques bridging specialized deep learning models into accessible web environments.",
+      "Optimized the TensorFlow model for inference speed, balancing accuracy with the need for high frame-rate processing.",
+      "Implemented custom preprocessing pipelines to normalize webcam feeds before feeding them into the CNN."
     ],
     githubUrl: "https://github.com/safwanmshereef/FRUIT_VEGGIE_IDENTIFIER_BASICINFO_AND_CALORIE_ESTIMATOR",
   },
@@ -160,16 +184,37 @@ const projects: Project[] = [
     id: "cfta",
     title: "CFTA",
     stack: "Java (Android) • PHP • SCSS • Python (Jupyter)",
-    description: "A multi-platform project actively analyzing global CO₂ emissions through a combination of mobile data tracking and complex statistical modeling.",
+    description: "A comprehensive multi-platform ecosystem analyzing global CO₂ emissions through a combination of mobile data tracking and complex statistical modeling.",
     features: [
-      "📱 Mobile Tracking: A native Java Android application built to collect user emission data.",
-      "🌐 Web Visualization: A PHP/Blade interface providing centralized management and analytics.",
-      "📓 Deep Analysis: Embedded Jupyter Notebook routines parsing extensive datasets for statistical modeling."
+      "📱 Mobile Tracking: A native Java Android application built to accurately collect user transportation and energy usage data.",
+      "🌐 Web Visualization: A robust PHP interface providing centralized management, user administration, and high-level analytics.",
+      "📓 Deep Analysis: Embedded Python/Jupyter Notebook routines parsing extensive backend datasets for long-term statistical modeling.",
+      "🗄️ Relational DB: Highly normalized PostgreSQL database architecture ensuring data integrity across thousands of users."
     ],
     deepDive: [
-      "Integrated multiple distinct technology stacks (Mobile, Web, Data Science) to create a cohesive data collection and analysis pipeline."
+      "Successfully integrated multiple distinct technology stacks (Mobile frontend, Web admin, Data Science backend) into a cohesive pipeline.",
+      "Designed secure RESTful APIs to facilitate communication between the Java mobile client and the PHP server.",
+      "Implemented complex SQL aggregations to power the real-time analytics dashboard on the web portal."
     ],
     githubUrl: "https://github.com/safwanmshereef/CFTA",
+  },
+  {
+    id: "zcb",
+    title: "Zero Carbon Blockchain",
+    stack: "Solidity • React • Node.js • Web3.js",
+    description: "A decentralized platform utilizing blockchain technology to transparently track, verify, and trade carbon credits, preventing double-counting.",
+    features: [
+      "⛓️ Smart Contracts: Secure Solidity contracts deployed on Ethereum testnets to mint and burn carbon credit tokens.",
+      "🌐 dApp Interface: A responsive React frontend integrating Web3.js for seamless user wallet connections (MetaMask).",
+      "🔒 Verification System: Cryptographic verification ensuring that claimed carbon offsets are backed by real-world data.",
+      "⚙️ Node.js Backend: An intermediary service for caching blockchain reads and handling off-chain metadata."
+    ],
+    deepDive: [
+      "Tackled the 'double-spending' problem in carbon markets by leveraging the immutable ledger of a blockchain.",
+      "Optimized smart contract gas costs by heavily refining data structures and utilizing event logs for state history.",
+      "Implemented robust error handling for common Web3 transaction failures (e.g., dropped transactions, network congestion)."
+    ],
+    githubUrl: "https://github.com/safwanmshereef/ZCB",
   }
 ];
 
