@@ -25,45 +25,39 @@ export default function AnimatedCharacters() {
   return (
     <div className="fixed inset-0 pointer-events-none z-50 overflow-hidden">
       {CHARACTERS.map((char, index) => {
-        // Stagger their start times and random vertical positions
-        const topPosition = 10 + Math.random() * 80; // 10% to 90%
-        const duration = 15 + Math.random() * 10; // 15s to 25s crossing
-        const delay = index * 2.5;
+        // Generate random multi-directional paths
+        const startX = Math.random() > 0.5 ? "-10vw" : "110vw";
+        const endX = startX === "-10vw" ? "110vw" : "-10vw";
+        const startY = `${10 + Math.random() * 80}vh`;
+        const midY1 = `${10 + Math.random() * 80}vh`;
+        const midY2 = `${10 + Math.random() * 80}vh`;
+        const endY = `${10 + Math.random() * 80}vh`;
+
+        const duration = 20 + Math.random() * 20; // 20s to 40s duration
+        const delay = index * 3;
 
         return (
           <motion.div
             key={char.id}
-            initial={{ x: "-10vw", opacity: 0 }}
+            initial={{ x: startX, y: startY, opacity: 0 }}
             animate={{
-              x: ["-10vw", "110vw"],
+              x: [startX, startX === "-10vw" ? "50vw" : "50vw", endX],
+              y: [startY, midY1, midY2, endY],
               opacity: [0, 1, 1, 0],
-              y: [0, -10, 0, 10, 0] // subtle bouncing
+              rotate: [0, Math.random() * 45 - 22.5, Math.random() * -45 + 22.5, 0]
             }}
             transition={{
-              x: {
-                duration: duration,
-                repeat: Infinity,
-                ease: "linear",
-                delay: delay
-              },
-              y: {
-                duration: 2,
-                repeat: Infinity,
-                ease: "easeInOut"
-              },
-              opacity: {
-                duration: duration,
-                repeat: Infinity,
-                times: [0, 0.1, 0.9, 1],
-                delay: delay
-              }
+              duration: duration,
+              repeat: Infinity,
+              ease: "easeInOut",
+              delay: delay,
+              times: [0, 0.33, 0.66, 1]
             }}
             style={{
               position: 'absolute',
-              top: `${topPosition}%`,
-              textShadow: `0 0 10px ${char.color}`
+              textShadow: `0 0 10px ${char.color}`,
             }}
-            className="text-2xl md:text-4xl drop-shadow-lg"
+            className="text-2xl md:text-4xl drop-shadow-lg pointer-events-none"
           >
             {char.icon}
           </motion.div>

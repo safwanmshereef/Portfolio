@@ -69,7 +69,7 @@ export default function Hero() {
             transition={{ delay: 0.2 }}
             className="text-xl text-cream/70 max-w-lg font-mono"
           >
-            Backend Developer & Applied AI Engineer building robust infrastructure and fine-tuned AI workflows.
+            Backend Developer & Applied AI Engineer specializing in high-throughput data automation, optimized PostgreSQL architectures, and production-grade agentic RAG orchestration.
           </motion.p>
         </div>
 
@@ -99,17 +99,28 @@ export default function Hero() {
               <p className="font-bold">Python / FastAPI</p>
             </div>
           </div>
-          <div className="manga-panel p-4 flex items-center space-x-3 interactive">
-            <BrainCircuit size={24} style={{ color: selectedChar.color }} />
-            <div>
-              <p className="text-xs text-cream/50 uppercase font-mono">AI Ops</p>
-              <p className="font-bold">LangChain / RAG</p>
+
+          {/* Replaced Middle Card: Full-Stack AI */}
+          <div className="manga-panel p-4 flex items-center space-x-3 interactive group relative">
+            <BrainCircuit size={24} style={{ color: selectedChar.color }} className="flex-shrink-0" />
+            <div className="relative z-10 bg-ink/80 rounded p-1">
+              <p className="text-xs text-cream/50 uppercase font-mono">Full-Stack AI</p>
+              <p className="font-bold text-sm leading-tight">FastAPI / LangChain / React</p>
+            </div>
+
+            {/* Hover Tooltip Overlay */}
+            <div className="absolute inset-0 bg-ink/95 border border-neon-teal p-3 rounded-md opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none z-20 flex items-center shadow-[0_0_15px_rgba(0,245,212,0.3)]">
+              <p className="font-mono text-[10px] text-cream/90 leading-tight">
+                <span className="text-neon-teal font-bold block mb-1">// TELEMETRY</span>
+                Orchestrating context-aware data retrieval pipelines via LangChain; serving high-concurrency API boundaries via FastAPI; and rendering live conversational chat frames through responsive React user interfaces.
+              </p>
             </div>
           </div>
+
           <div className="manga-panel p-4 flex items-center space-x-3 interactive col-span-2">
             <Database size={24} style={{ color: selectedChar.color }} />
             <div>
-              <p className="text-xs text-cream/50 uppercase font-mono">Data Eng</p>
+              <p className="text-xs text-cream/50 uppercase font-mono">Data Architecture</p>
               <p className="font-bold">PostgreSQL Architecture</p>
             </div>
           </div>
@@ -126,10 +137,10 @@ export default function Hero() {
             <ExternalLink size={16} />
           </a>
           <a href="https://github.com/safwanmshereef" target="_blank" rel="noopener noreferrer" className="px-6 py-3 bg-cream text-ink font-bold uppercase tracking-wider interactive">
-            Init GitHub
+            Pull Source (GitHub)
           </a>
           <a href="https://www.linkedin.com/in/safwan-shereef/" target="_blank" rel="noopener noreferrer" className="px-6 py-3 bg-[#0A66C2] text-cream font-bold uppercase tracking-wider interactive">
-            LinkedIn Link
+            Connect (LinkedIn)
           </a>
         </motion.div>
       </div>
@@ -154,12 +165,14 @@ export default function Hero() {
               {selectedChar.id === char.id && (
                 <motion.div
                   layoutId="activeCharIndicator"
-                  className="absolute inset-0 opacity-10 pointer-events-none"
+                  className="absolute inset-0 opacity-10 pointer-events-none z-0"
                   style={{ backgroundColor: char.color }}
                 />
               )}
-              <h4 className="font-display font-bold text-lg">{char.name}</h4>
-              <p className="font-mono text-xs text-cream/60">{char.series}</p>
+              <div className="relative z-10">
+                <h4 className="font-display font-bold text-lg text-cream">{char.name}</h4>
+                <p className="font-mono text-xs text-cream/60">{char.series}</p>
+              </div>
             </motion.button>
           ))}
         </div>
