@@ -8,14 +8,13 @@ const config: Config = {
   theme: {
     extend: {
       colors: {
-        ink: "#211829",
-        plum: "#5a3f73",
+        ink: "#0f141c",
+        slate: "#1a1f2e",
         cream: "#fff7ed",
-        sakura: "#ff4f8b",
-        coral: "#ff6b4a",
-        sunshine: "#ffbd3f",
-        aqua: "#21d6d0",
-        circuit: "#4f46e5",
+        "neon-teal": "#00f5d4",
+        "sunset-orange": "#ff5a5f",
+        "cherry-pink": "#ff758f",
+        "radiant-gold": "#fee440",
         ferrari: "#e10600",
         mercedes: "#00a19b",
         redbull: "#1e41ff"
@@ -26,12 +25,14 @@ const config: Config = {
         mono: ["JetBrains Mono", "SFMono-Regular", "Consolas", "monospace"]
       },
       boxShadow: {
-        anime: "0 24px 80px rgba(90, 63, 115, 0.18)",
-        glow: "0 0 42px rgba(255, 79, 139, 0.24)"
+        anime: "4px 4px 0px 0px rgba(0, 245, 212, 1)",
+        "anime-hover": "8px 8px 0px 0px rgba(255, 90, 95, 1)",
+        glow: "0 0 42px rgba(255, 117, 143, 0.4)",
+        "glow-teal": "0 0 42px rgba(0, 245, 212, 0.4)",
       },
       backgroundImage: {
         "dot-grid":
-          "radial-gradient(circle at 1px 1px, rgba(33, 24, 41, 0.12) 1px, transparent 0)",
+          "radial-gradient(circle at 1px 1px, rgba(255, 255, 255, 0.05) 1px, transparent 0)",
         "race-stripes":
           "repeating-linear-gradient(110deg, rgba(255,255,255,0.8) 0 18px, transparent 18px 30px)"
       }
