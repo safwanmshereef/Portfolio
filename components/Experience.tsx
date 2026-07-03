@@ -47,7 +47,7 @@ export default function Experience() {
                   <strong className="text-cream">Database Architecture Optimization:</strong> Analyzed, indexed, and structurally restructured complex relational PostgreSQL configurations, reducing enterprise query latency by 15%.
                 </li>
                 <li>
-                  <strong className="text-cream">Small Language Model Deployment:</strong> Trained, fine-tuned, and implemented a specialized, localized SLM framework for proprietary automation workflows <span className="text-radiant-gold">(`freshivores_power_step_5000.pth`)</span>.
+                  <strong className="text-cream">Small Language Model Deployment:</strong> Trained, fine-tuned, and implemented a specialized, localized SLM framework for proprietary automation workflows.
                 </li>
               </ul>
             </div>
@@ -63,8 +63,8 @@ export default function Experience() {
 
             <div className="relative z-10">
               <div className="flex justify-between items-start mb-2">
-                <h4 className="font-display font-bold text-xl" style={{ color: 'var(--theme-color)' }}>Software Engineer Intern</h4>
-                <span className="font-mono text-xs bg-radiant-gold/10 text-radiant-gold px-2 py-1 rounded">Previous Track</span>
+                <h4 className="font-display font-bold text-xl" style={{ color: 'var(--theme-color)' }}>Python Developer Intern</h4>
+                <span className="font-mono text-xs bg-radiant-gold/10 text-radiant-gold px-2 py-1 rounded">Sep 2024 – Apr 2025</span>
               </div>
               <p className="font-mono text-sm text-sunset-orange mb-4">Singularis Software Technologies • Remote</p>
 
@@ -89,8 +89,8 @@ export default function Experience() {
 
             <div className="relative z-10">
               <div className="flex justify-between items-start mb-2">
-                <h4 className="font-display font-bold text-xl" style={{ color: 'var(--theme-color)' }}>AI Engineering Intern</h4>
-                <span className="font-mono text-xs bg-sunset-orange/10 text-sunset-orange px-2 py-1 rounded">Early Track</span>
+                <h4 className="font-display font-bold text-xl" style={{ color: 'var(--theme-color)' }}>AI & Computer Vision Intern</h4>
+                <span className="font-mono text-xs bg-sunset-orange/10 text-sunset-orange px-2 py-1 rounded">Apr 2023 – May 2023</span>
               </div>
               <p className="font-mono text-sm text-sunset-orange mb-4">Techmaghi • Hybrid</p>
 

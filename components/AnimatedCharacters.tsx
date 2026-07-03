@@ -3,14 +3,12 @@
 import { motion } from "framer-motion";
 import { useEffect, useState } from "react";
 
-// Using simple emoji/character representations for the required cast
+// Actual anime character icons
 const CHARACTERS = [
-  { id: 1, name: "Naruto", icon: "🦊", color: "#fee440" },
-  { id: 2, name: "Zero Two", icon: "🦖", color: "#ff758f" },
-  { id: 3, name: "Eren", icon: "🗡️", color: "#ff5a5f" },
-  { id: 4, name: "Mai", icon: "🐰", color: "#00f5d4" },
-  { id: 5, name: "Turbo Granny", icon: "👵💨", color: "#ffffff" },
-  { id: 6, name: "Daijin", icon: "🐱", color: "#ffffff" },
+  { id: 1, name: "Naruto", imgUrl: "https://i.pinimg.com/originals/a0/62/77/a06277b049abdfbb05d8f6d62ccae3bb.gif", color: "#fee440" },
+  { id: 2, name: "Zero Two", imgUrl: "https://i.pinimg.com/originals/ab/03/79/ab03792e3ca2cc9f928e1834e565bf5d.gif", color: "#ff758f" },
+  { id: 3, name: "Eren", imgUrl: "https://media1.tenor.com/m/l_D6d2Y-r1EAAAAC/eren-eren-yeager.gif", color: "#ff5a5f" },
+  { id: 4, name: "Mai", imgUrl: "https://i.pinimg.com/originals/74/46/78/74467882255740fcb64042898ff9058b.gif", color: "#00f5d4" },
 ];
 
 export default function AnimatedCharacters() {
@@ -55,11 +53,15 @@ export default function AnimatedCharacters() {
             }}
             style={{
               position: 'absolute',
-              textShadow: `0 0 10px ${char.color}`,
             }}
-            className="text-2xl md:text-4xl drop-shadow-lg pointer-events-none"
+            className="drop-shadow-lg pointer-events-none"
           >
-            {char.icon}
+            <img
+               src={char.imgUrl}
+               alt={char.name}
+               className="w-16 h-16 object-contain drop-shadow-[0_0_10px_rgba(255,255,255,0.5)]"
+               style={{ filter: `drop-shadow(0 0 8px ${char.color})` }}
+            />
           </motion.div>
         );
       })}
