@@ -9,6 +9,8 @@ type Project = {
   title: string;
   stack: string;
   description: string;
+  deepDive: string[];
+  features: string[];
   githubUrl: string;
   demoUrl?: string;
   iframeSupport?: boolean;
@@ -18,29 +20,71 @@ const projects: Project[] = [
   {
     id: "rag",
     title: "Hybrid-RAG-AI-Assistant",
-    stack: "Python • FAISS • LangChain • Streamlit • Gemini",
-    description: "A production-grade AI Data Assistant with a Dual-Engine architecture. It switches between local privacy (Ollama) and cloud-based reasoning (Gemini). Features Multi-File RAG, Agentic Data Insight (auto-visualization), and voice-to-prompt multimodal interactions.",
+    stack: "Python • FAISS • LangChain • Streamlit • Gemini 3.1",
+    description: "A production-grade AI Data Assistant featuring a unique Dual-Engine architecture. Seamlessly switch between local privacy (Ollama Qwen3.5) and cloud-based reasoning (Gemini 3.1 Flash) for maximum data security and low-latency processing.",
+    features: [
+      "🛡️ Dual-Engine Intelligence: Local offline inference via Ollama + Cloud API via Gemini.",
+      "📚 Unified Knowledge RAG: Process multi-file PDFs, TXTs, CSVs and URL Scrape-to-RAG via FAISS.",
+      "📊 Agentic Data Insight: Auto-generates interactive Plotly charts and handles Pandas calculations.",
+      "🔊 Multimodal UX: Interactive Text-to-Speech (TTS) and Voice-to-Prompt capabilities."
+    ],
+    deepDive: [
+      "Engineered a robust Multi-File processing pipeline utilizing LangChain, FAISS Vector Indexing, and HuggingFace all-MiniLM-L6-v2 embeddings.",
+      "Implemented a 'Context Inspector' allowing users to view raw similarity scores and retrieved chunks, bringing observability to AI reasoning.",
+      "Built resilient SQLite-based session management for renaming, deleting, and securely persisting chats locally."
+    ],
     githubUrl: "https://github.com/safwanmshereef/Hybrid-RAG-AI-Assistant",
   },
   {
     id: "finance",
     title: "Finance-Dashboard",
     stack: "FastAPI • SQLAlchemy • Postgres • Streamlit",
-    description: "Full-stack decoupled finance platform. Features robust role-based access control (viewer, analyst, admin), dynamic filtering, budget tracking, and real-time dashboard analytics with PostgreSQL and JWT Auth.",
+    description: "A full-stack decoupled finance platform demonstrating sophisticated role-based access control (Viewer, Analyst, Admin) alongside real-time data persistence and analytics.",
+    features: [
+      "🔐 Advanced RBAC: Granular permissions for admins, analysts, and viewers over API endpoints.",
+      "📊 Date-Range Analytics: Dashboard summary with monthly budget trackers and utilization indicators.",
+      "🔍 Deep Search: Records explorer querying across categories and notes.",
+      "📈 Export & Reporting: One-click CSV exports from filtered tables."
+    ],
+    deepDive: [
+      "Developed a clean, layered FastAPI backend (routers, schemas, models, database) relying on strict Pydantic constraints and customized HTTP status error handling.",
+      "Established secure JWT-based authentication flows with full session state management via Streamlit.",
+      "Configured robust PostgreSQL deployments mapping ORM relationships between Users and Financial Records."
+    ],
     githubUrl: "https://github.com/safwanmshereef/Finance-Dashboard",
   },
   {
     id: "release_app",
     title: "ProductionReleaseApp",
     stack: "Python • Streamlit • SQLite • Gemini AI",
-    description: "An Enterprise Ops Hub for monitoring pipelines and managing incidents. Includes real-time job tracking, AI-powered smart ticketing triage using Google Gemini, and a context-aware knowledge assistant.",
+    description: "An Enterprise Ops Hub serving as a centralized dashboard for tracking production releases, monitoring pipelines, and executing smart incident triage via integrated AI.",
+    features: [
+      "🚀 Live Job Tracking: Monitor release pipelines dynamically in real-time.",
+      "🤖 Smart Ticketing: Auto-triage and generate resolutions for incidents using Gemini.",
+      "📘 Knowledge Assistant: Query contextual operations documentation instantly.",
+      "🗄️ SQLite Storage: Resilient tracking of deployments and logs locally."
+    ],
+    deepDive: [
+      "Architected to streamline complex deployment environments, significantly reducing context-switching for site reliability engineers.",
+      "Integrated Gemini to scan through active ticket queues, providing rapid mitigation steps based on incident context."
+    ],
     githubUrl: "https://github.com/safwanmshereef/ProductionReleaseApp",
   },
   {
     id: "zenturio",
     title: "ZenturioChatbot",
     stack: "Python • Streamlit • Gemini 3.1 Pro",
-    description: "Production-grade, context-aware AI assistant built with Google's native Gemini SDK. Features sliding-window token optimization to prevent crashes, multi-chat database persistence, and an auto model-detection engine.",
+    description: "A production-grade, highly context-aware AI assistant built entirely using Google's native Gemini SDK. Developed to tackle stringent multi-turn context requirements.",
+    features: [
+      "🧠 Context-Aware: Maintains conversation history, elegantly resolving complex pronouns over multi-turn prompts.",
+      "🎛️ Token Optimizer: Uses 'tiktoken' for sliding-window truncation to preserve System Prompts and prevent memory crashes.",
+      "🛡️ Anti-Hallucination: Employs a 400+ token System Prompt enforcing zero-repetition and mandatory clarification.",
+      "⚡ Auto Model Engine: Scans API permissions to auto-connect to the most capable Gemini model available."
+    ],
+    deepDive: [
+      "Engineered an observable dashboard tracking active session tokens, total API calls, and context window utilization in real-time.",
+      "Developed an embedded SQLite engine allowing users to simultaneously manage, switch, rename, and persist multiple distinct chat threads securely."
+    ],
     githubUrl: "https://github.com/safwanmshereef/ZenturioChatbot",
     demoUrl: "https://zenturiotechchatbot.streamlit.app",
     iframeSupport: true
@@ -49,36 +93,83 @@ const projects: Project[] = [
     id: "nutriscan",
     title: "NutriScan AI",
     stack: "Python • Streamlit • Google Gemini Vision",
-    description: "Smart health companion. Uses Gemini Vision Pro to scan food photos, instantly detect calories and macros, highlight health risks, and dynamically act as an AI chef generating custom diet-aware recipes.",
+    description: "Your smart health companion. NutriScan AI dynamically converts food photos into meticulous nutritional insights, caloric breakdowns, and interactive diet-aware recipes.",
+    features: [
+      "📸 AI Food Scanner: Instant detection of calories, macros, health benefits, and potential risks via image upload.",
+      "👨‍🍳 Intelligent Chef: Suggests customizable recipes adjusting to Vegan, Keto, or Paleo diets.",
+      "📊 Progress Tracker: Interactive dashboard monitoring BMR goals and hydration levels.",
+      "🏃 Burn-It-Off Calculator: Calculates exact durations required to run, walk, or bike off the ingested calories."
+    ],
+    deepDive: [
+      "Integrated Google Gemini Vision Pro to process complex image arrays, accurately parsing food items directly into structured JSON payloads.",
+      "Leveraged Plotly to render responsive, visually compelling Donut Charts representing macro-nutrient splits.",
+      "Incorporated gTTS (Text-to-Speech) for an accessible, hands-free auditing experience."
+    ],
     githubUrl: "https://github.com/safwanmshereef/nutriscan-ai",
   },
   {
     id: "sra",
     title: "SRA Groups",
     stack: "FastAPI • React (Vite) • React Native (Expo)",
-    description: "Comprehensive management system for real estate. Includes a backend API, an Admin Web Dashboard, and a Mobile App for worker self-check-ins utilizing strict GPS geofencing and supervisor QR verification.",
+    description: "A comprehensive Management & Attendance System designed for real-estate construction. Integrates a mobile app for field workers with a powerful CRM admin dashboard.",
+    features: [
+      "📍 Strict GPS Geofencing: Prevents fraudulent check-ins by locking workers to specific site coordinates.",
+      "📱 Supervisor App: React Native interface for scanning worker QR codes and manual verification.",
+      "📊 Admin Dashboard: Manage leaves, real-time attendance logs, brokers, and wage payments.",
+      "🔐 Audit Trails: Comprehensive activity logging (check-ins, signups, site creations)."
+    ],
+    deepDive: [
+      "Constructed a multi-platform ecosystem where the FastAPI backend synchronizes state across a React Vite Web Panel and an Expo Mobile App.",
+      "Devised a complex geographic validation algorithm on the backend ensuring strict radius compliances around authorized construction zones."
+    ],
     githubUrl: "https://github.com/safwanmshereef/SRA-Groups",
-  },
-  {
-    id: "cfta",
-    title: "CFTA",
-    stack: "Java (Android) • PHP • SCSS • Python (Jupyter)",
-    description: "Multi-platform project analyzing CO₂ emissions. Features a Java-based mobile application for tracking data and a PHP/Blade web interface for visualizing in-depth Jupyter Notebook Python analyses.",
-    githubUrl: "https://github.com/safwanmshereef/CFTA",
-  },
-  {
-    id: "fruit_veggie",
-    title: "Fruit Veggie Identifier",
-    stack: "Python • Streamlit • OpenCV • TensorFlow",
-    description: "Computer Vision web application leveraging a trained TensorFlow model (trained_model.h5) to identify fruits and vegetables via webcam or image upload, estimating basic info and calorie counts.",
-    githubUrl: "https://github.com/safwanmshereef/FRUIT_VEGGIE_IDENTIFIER_BASICINFO_AND_CALORIE_ESTIMATOR",
   },
   {
     id: "store_app",
     title: "Store Management System (Internship)",
     stack: "Next.js • Tailwind v4 • FastAPI • PostgreSQL",
-    description: "Role-based operations platform with OTP authentication. The Next.js frontend drives tailored Admin/Manager dashboards, while the FastAPI backend orchestrates daily stock verification logic, carryover mismatches, and Zoho/GoFrugal integrations.",
+    description: "An operational enterprise platform governing daily store compliances. Connects an OTP-secured Next.js frontend with an advanced stock verification FastAPI engine.",
+    features: [
+      "📦 Daily Stock Engine: Generates daily audit batches cross-referencing Freshivores catalog data against system stock.",
+      "🔄 Carryover Logic: Intelligently pushes unresolved stock discrepancies into next-day verification batches.",
+      "🔐 Role-based Routing: Tailored workflows for Admin, Manager, and Operational roles using JWT & OTP.",
+      "📊 GoFrugal Integration: Seamlessly validates physical manager counts against central ERP system values."
+    ],
+    deepDive: [
+      "Engineered a resilient background scheduler that continuously aggregates daily mismatch variances, triggering threshold-based notifications.",
+      "Built a secure validation layer translating GoFrugal/Zoho catalog items into structured, paginated Next.js admin review screens."
+    ],
     githubUrl: "https://github.com/safwanmshereef/store-application",
+  },
+  {
+    id: "fruit_veggie",
+    title: "Fruit Veggie Identifier",
+    stack: "Python • OpenCV • TensorFlow • Streamlit",
+    description: "A lightweight Computer Vision web application processing live webcam streams to classify fruits and vegetables in real-time.",
+    features: [
+      "📷 Live CV Feed: Captures frame-by-frame data via OpenCV to run continuous inference.",
+      "🧠 TensorFlow Core: Utilizes a custom-trained model (.h5) to identify specific grocery items.",
+      "🍎 Calorie Estimation: Overlays fundamental caloric and nutritional estimates onto detected items."
+    ],
+    deepDive: [
+      "Demonstrates core edge-deployment techniques bridging specialized deep learning models (TensorFlow) into accessible web environments (Streamlit)."
+    ],
+    githubUrl: "https://github.com/safwanmshereef/FRUIT_VEGGIE_IDENTIFIER_BASICINFO_AND_CALORIE_ESTIMATOR",
+  },
+  {
+    id: "cfta",
+    title: "CFTA",
+    stack: "Java (Android) • PHP • SCSS • Python (Jupyter)",
+    description: "A multi-platform project actively analyzing global CO₂ emissions through a combination of mobile data tracking and complex statistical modeling.",
+    features: [
+      "📱 Mobile Tracking: A native Java Android application built to collect user emission data.",
+      "🌐 Web Visualization: A PHP/Blade interface providing centralized management and analytics.",
+      "📓 Deep Analysis: Embedded Jupyter Notebook routines parsing extensive datasets for statistical modeling."
+    ],
+    deepDive: [
+      "Integrated multiple distinct technology stacks (Mobile, Web, Data Science) to create a cohesive data collection and analysis pipeline."
+    ],
+    githubUrl: "https://github.com/safwanmshereef/CFTA",
   }
 ];
 
@@ -154,7 +245,35 @@ export default function Projects() {
               </motion.div>
 
               <motion.div layoutId={`desc-${activeProject.id}`} className="text-cream/90 leading-relaxed mb-8">
-                {activeProject.description}
+                <p className="mb-6 text-lg">{activeProject.description}</p>
+
+                {activeProject.features && activeProject.features.length > 0 && (
+                  <div className="mb-6">
+                    <h3 className="text-sunset-orange font-bold uppercase tracking-widest text-sm mb-3">Key Features</h3>
+                    <ul className="space-y-2">
+                      {activeProject.features.map((feature, idx) => (
+                        <li key={idx} className="flex items-start text-sm text-cream/80">
+                           <span className="text-neon-teal mr-2 mt-0.5 font-mono">{">"}</span>
+                           <span>{feature}</span>
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+                )}
+
+                {activeProject.deepDive && activeProject.deepDive.length > 0 && (
+                  <div>
+                    <h3 className="text-sunset-orange font-bold uppercase tracking-widest text-sm mb-3">Technical Deep Dive</h3>
+                    <ul className="space-y-2">
+                      {activeProject.deepDive.map((detail, idx) => (
+                        <li key={idx} className="flex items-start text-sm text-cream/70">
+                           <span className="text-radiant-gold mr-2 mt-0.5 font-mono">{"*"}</span>
+                           <span>{detail}</span>
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+                )}
               </motion.div>
 
               <div className="flex flex-wrap gap-4 mb-8">
