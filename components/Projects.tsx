@@ -244,60 +244,90 @@ export default function Projects() {
                 {activeProject.stack}
               </motion.div>
 
-              <motion.div layoutId={`desc-${activeProject.id}`} className="text-cream/90 leading-relaxed mb-8">
-                <p className="mb-6 text-lg">{activeProject.description}</p>
+              <div className="flex flex-col lg:flex-row gap-8 mb-8">
+                {/* Left Panel: Content */}
+                <motion.div layoutId={`desc-${activeProject.id}`} className="flex-1 text-cream/90 leading-relaxed">
+                  <p className="mb-6 text-lg">{activeProject.description}</p>
 
-                {activeProject.features && activeProject.features.length > 0 && (
-                  <div className="mb-6">
-                    <h3 className="text-sunset-orange font-bold uppercase tracking-widest text-sm mb-3">Key Features</h3>
-                    <ul className="space-y-2">
-                      {activeProject.features.map((feature, idx) => (
-                        <li key={idx} className="flex items-start text-sm text-cream/80">
-                           <span className="text-neon-teal mr-2 mt-0.5 font-mono">{">"}</span>
-                           <span>{feature}</span>
-                        </li>
-                      ))}
-                    </ul>
+                  {activeProject.features && activeProject.features.length > 0 && (
+                    <div className="mb-6">
+                      <h3 className="text-sunset-orange font-bold uppercase tracking-widest text-sm mb-3">Core Deliverables</h3>
+                      <ul className="space-y-2">
+                        {activeProject.features.map((feature, idx) => (
+                          <li key={idx} className="flex items-start text-sm text-cream/80">
+                             <span className="text-neon-teal mr-2 mt-0.5 font-mono">{">"}</span>
+                             <span>{feature}</span>
+                          </li>
+                        ))}
+                      </ul>
+                    </div>
+                  )}
+
+                  {activeProject.deepDive && activeProject.deepDive.length > 0 && (
+                    <div>
+                      <h3 className="text-sunset-orange font-bold uppercase tracking-widest text-sm mb-3">System Architecture Details</h3>
+                      <ul className="space-y-2">
+                        {activeProject.deepDive.map((detail, idx) => (
+                          <li key={idx} className="flex items-start text-sm text-cream/70">
+                             <span className="text-radiant-gold mr-2 mt-0.5 font-mono">{"*"}</span>
+                             <span>{detail}</span>
+                          </li>
+                        ))}
+                      </ul>
+                    </div>
+                  )}
+                </motion.div>
+
+                {/* Right Panel: Architecture Diagram & Actions */}
+                <div className="w-full lg:w-[40%] flex flex-col gap-6">
+                  <div className="border border-slate p-4 bg-ink/50 font-mono text-xs text-neon-teal rounded-md overflow-x-auto relative group">
+                    <div className="absolute top-2 right-2 flex space-x-1 opacity-50">
+                      <div className="w-2 h-2 rounded-full bg-sunset-orange"></div>
+                      <div className="w-2 h-2 rounded-full bg-radiant-gold"></div>
+                      <div className="w-2 h-2 rounded-full bg-neon-teal"></div>
+                    </div>
+                    <span className="text-cream/40 mb-2 block">// Pipeline_Topology.json</span>
+                    <pre className="whitespace-pre-wrap mt-4 text-radiant-gold/80 leading-relaxed">
+{`[User Input]
+     │
+     ▼
+[API Gateway] ─► (Auth)
+     │
+     ▼
+[Logic Core] ◄─► [Database]
+     │
+     ▼
+[Output Renderer]
+     │
+     ▼
+[Client Sync]`}
+                    </pre>
                   </div>
-                )}
 
-                {activeProject.deepDive && activeProject.deepDive.length > 0 && (
-                  <div>
-                    <h3 className="text-sunset-orange font-bold uppercase tracking-widest text-sm mb-3">Technical Deep Dive</h3>
-                    <ul className="space-y-2">
-                      {activeProject.deepDive.map((detail, idx) => (
-                        <li key={idx} className="flex items-start text-sm text-cream/70">
-                           <span className="text-radiant-gold mr-2 mt-0.5 font-mono">{"*"}</span>
-                           <span>{detail}</span>
-                        </li>
-                      ))}
-                    </ul>
+                  <div className="flex flex-col gap-3">
+                    {activeProject.demoUrl && !activeProject.iframeSupport && (
+                      <a
+                        href={activeProject.demoUrl}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="px-6 py-4 bg-sunset-orange/10 border border-sunset-orange text-sunset-orange hover:bg-sunset-orange hover:text-ink transition-colors flex items-center justify-center space-x-2 font-display font-bold uppercase tracking-wider interactive"
+                      >
+                        <PlaySquare size={18} />
+                        <span>Launch Live Demo</span>
+                      </a>
+                    )}
+
+                    <a
+                      href={activeProject.githubUrl}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="px-6 py-3 border border-slate hover:border-cream flex items-center justify-center space-x-2 font-mono text-sm uppercase interactive transition-colors"
+                    >
+                      <FolderGit2 size={16} />
+                      <span>Repository Origin</span>
+                    </a>
                   </div>
-                )}
-              </motion.div>
-
-              <div className="flex flex-wrap gap-4 mb-8">
-                <a
-                  href={activeProject.githubUrl}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="px-6 py-3 border border-slate hover:border-cream flex items-center space-x-2 font-mono text-sm uppercase interactive"
-                >
-                  <FolderGit2 size={16} />
-                  <span>Repository Origin</span>
-                </a>
-
-                {activeProject.demoUrl && !activeProject.iframeSupport && (
-                   <a
-                     href={activeProject.demoUrl}
-                     target="_blank"
-                     rel="noopener noreferrer"
-                     className="px-6 py-3 border border-radiant-gold text-radiant-gold flex items-center space-x-2 font-mono text-sm uppercase interactive"
-                   >
-                     <ExternalLink size={16} />
-                     <span>External Uplink</span>
-                   </a>
-                )}
+                </div>
               </div>
 
               {activeProject.iframeSupport && activeProject.demoUrl && (

@@ -34,20 +34,72 @@ export default function Experience() {
 
             <div className="relative z-10">
               <div className="flex justify-between items-start mb-2">
-                <h4 className="font-display font-bold text-xl">Software Engineer Intern</h4>
-                <span className="font-mono text-xs bg-neon-teal/10 text-neon-teal px-2 py-1 rounded">Apr 2026 – Present</span>
+                <h4 className="font-display font-bold text-xl" style={{ color: 'var(--theme-color)' }}>Software Engineer Intern</h4>
+                <span className="font-mono text-xs bg-neon-teal/10 text-neon-teal px-2 py-1 rounded">Feb 2026 – Present</span>
               </div>
               <p className="font-mono text-sm text-sunset-orange mb-4">Freshivores • Bangalore</p>
 
               <ul className="space-y-3 font-mono text-sm text-cream/80 list-disc pl-4 marker:text-neon-teal">
                 <li>
-                  <strong className="text-cream">Database Architecture Optimization:</strong> Analyzed, indexed, and structurally restructured complex relational PostgreSQL configurations, reducing query latency by 15%.
+                  <strong className="text-cream">Full-Stack Store Operations:</strong> Engineered secure, RBAC-controlled enterprise operations portals utilizing FastAPI and React architectures.
                 </li>
                 <li>
-                  <strong className="text-cream">Automated Data Processing:</strong> Engineered and deployed automated Python-based ETL data processing configurations, trimming manual overhead by 30%.
+                  <strong className="text-cream">Database Architecture Optimization:</strong> Analyzed, indexed, and structurally restructured complex relational PostgreSQL configurations, reducing enterprise query latency by 15%.
                 </li>
                 <li>
                   <strong className="text-cream">Small Language Model Deployment:</strong> Trained, fine-tuned, and implemented a specialized, localized SLM framework for proprietary automation workflows <span className="text-radiant-gold">(`freshivores_power_step_5000.pth`)</span>.
+                </li>
+              </ul>
+            </div>
+          </motion.div>
+
+          <motion.div
+            initial={{ opacity: 0, x: -20 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            viewport={{ once: true }}
+            className="manga-panel p-6 border-l-4 border-l-radiant-gold relative overflow-hidden mt-6"
+          >
+            <div className="absolute inset-0 opacity-[0.03] pointer-events-none" style={{ backgroundImage: 'var(--screentone)' }} />
+
+            <div className="relative z-10">
+              <div className="flex justify-between items-start mb-2">
+                <h4 className="font-display font-bold text-xl" style={{ color: 'var(--theme-color)' }}>Software Engineer Intern</h4>
+                <span className="font-mono text-xs bg-radiant-gold/10 text-radiant-gold px-2 py-1 rounded">Previous Track</span>
+              </div>
+              <p className="font-mono text-sm text-sunset-orange mb-4">Singularis Software Technologies • Remote</p>
+
+              <ul className="space-y-3 font-mono text-sm text-cream/80 list-disc pl-4 marker:text-radiant-gold">
+                <li>
+                  <strong className="text-cream">ETL Automation Engineering:</strong> Developed and optimized high-throughput Python-based ETL scripts, dramatically cutting down manual data engineering operations and processing overhead by 30%.
+                </li>
+                <li>
+                  <strong className="text-cream">Backend Pipeline Refactoring:</strong> Designed type-safe internal API utilities and integrated robust database querying layers to support high-availability business operations.
+                </li>
+              </ul>
+            </div>
+          </motion.div>
+
+          <motion.div
+            initial={{ opacity: 0, x: -20 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            viewport={{ once: true }}
+            className="manga-panel p-6 border-l-4 border-l-sunset-orange relative overflow-hidden mt-6"
+          >
+            <div className="absolute inset-0 opacity-[0.03] pointer-events-none" style={{ backgroundImage: 'var(--screentone)' }} />
+
+            <div className="relative z-10">
+              <div className="flex justify-between items-start mb-2">
+                <h4 className="font-display font-bold text-xl" style={{ color: 'var(--theme-color)' }}>AI Engineering Intern</h4>
+                <span className="font-mono text-xs bg-sunset-orange/10 text-sunset-orange px-2 py-1 rounded">Early Track</span>
+              </div>
+              <p className="font-mono text-sm text-sunset-orange mb-4">Techmaghi • Hybrid</p>
+
+              <ul className="space-y-3 font-mono text-sm text-cream/80 list-disc pl-4 marker:text-sunset-orange">
+                <li>
+                  <strong className="text-cream">Computer Vision Deployment:</strong> Programmed, evaluated, and deployed high-accuracy object detection models utilizing TensorFlow and OpenCV pipelines.
+                </li>
+                <li>
+                  <strong className="text-cream">Edge Inference Optimization:</strong> Processed custom image datasets and algorithmically fine-tuned computer vision model thresholds for streamlined target tracking.
                 </li>
               </ul>
             </div>

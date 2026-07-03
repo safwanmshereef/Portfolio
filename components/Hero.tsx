@@ -22,11 +22,17 @@ const characters: Character[] = [
 export default function Hero() {
   const [selectedChar, setSelectedChar] = useState<Character>(characters[0]);
 
+  // Update global CSS variable when character changes to affect global theme
+  if (typeof document !== 'undefined') {
+    document.documentElement.style.setProperty('--theme-color', selectedChar.color);
+    document.documentElement.style.setProperty('--theme-gradient', selectedChar.gradient);
+  }
+
   return (
     <section className="min-h-screen relative flex flex-col lg:flex-row items-center justify-between px-8 lg:px-24 pt-32 pb-16 overflow-hidden">
       {/* Background Particle Effects mapped to character color */}
       <motion.div
-        className={`absolute inset-0 bg-gradient-to-br ${selectedChar.gradient} pointer-events-none -z-10`}
+        className={`absolute inset-0 bg-gradient-to-br from-[var(--theme-color)]/20 to-transparent pointer-events-none -z-10`}
         animate={{ opacity: [0.5, 0.8, 0.5] }}
         transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
       />

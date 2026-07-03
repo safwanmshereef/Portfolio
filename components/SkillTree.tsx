@@ -5,11 +5,11 @@ import { motion } from "framer-motion";
 import { Server, Database, Container, Brain, LayoutGrid } from "lucide-react";
 
 const skillNodes = [
-  { id: "backend", label: "Backend Core", icon: Server, skills: ["Python", "FastAPI", "Node.js", "Laravel", "REST", "C", "C++", "Java"] },
-  { id: "ai", label: "AI Orchestration", icon: Brain, skills: ["LangChain", "RAG", "TensorFlow", "Scikit-Learn", "Ollama", "ClaudeCode"] },
+  { id: "backend", label: "Backend Core", icon: Server, skills: ["Python", "FastAPI", "Node.js", "Server-Side Logic", "Webhooks", "REST APIs", "C", "C++"] },
+  { id: "ai", label: "AI Orchestration", icon: Brain, skills: ["LangChain", "LangGraph", "RAG Pipelines", "FAISS (Vector Indexing)", "Agentic Tool Calling", "TensorFlow", "OpenCV", "Prompt Tuning"] },
+  { id: "data", label: "Data Eng", icon: Database, skills: ["Advanced SQL", "PostgreSQL Schema Optimization", "Automated ETL Pipelines", "Pandas"] },
+  { id: "infra", label: "DevOps", icon: Container, skills: ["Docker Containerization", "Cloud Compute Clusters", "Linux Systems Management", "Git/GitHub Version Control"] },
   { id: "frontend", label: "Frontend & Mobile", icon: LayoutGrid, skills: ["React", "Next.js", "React Native", "Tailwind CSS", "Framer Motion"] },
-  { id: "data", label: "Data Eng", icon: Database, skills: ["PostgreSQL", "MySQL", "ETL", "Pandas"] },
-  { id: "infra", label: "DevOps", icon: Container, skills: ["Docker", "GCP", "Linux", "Git", "GitHub"] },
 ];
 
 export default function SkillTree() {

@@ -2,6 +2,7 @@ import "./globals.css";
 import type { Metadata } from "next";
 import { Space_Grotesk, JetBrains_Mono } from "next/font/google";
 import CustomCursor from "@/components/CustomCursor";
+import AnimatedCharacters from "@/components/AnimatedCharacters";
 
 const spaceGrotesk = Space_Grotesk({
   subsets: ["latin"],
@@ -25,8 +26,9 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en" className={`${spaceGrotesk.variable} ${jetBrainsMono.variable}`}>
-      <body className="font-sans antialiased text-cream relative">
+      <body className="font-sans antialiased text-cream relative overflow-x-hidden">
         <CustomCursor />
+        <AnimatedCharacters />
         {children}
       </body>
     </html>

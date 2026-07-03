@@ -4,6 +4,8 @@
 
 :root {
   color-scheme: dark;
+  --theme-color: #ff5a5f;
+  --theme-gradient: from-[#ff5a5f]/20 to-transparent;
 }
 
 * {
