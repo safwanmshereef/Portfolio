@@ -1,28 +1,34 @@
-import type { Metadata } from "next";
-import type { ReactNode } from "react";
 import "./globals.css";
+import type { Metadata } from "next";
+import { Space_Grotesk, JetBrains_Mono } from "next/font/google";
+import CustomCursor from "@/components/CustomCursor";
+
+const spaceGrotesk = Space_Grotesk({
+  subsets: ["latin"],
+  variable: "--font-display",
+});
+
+const jetBrainsMono = JetBrains_Mono({
+  subsets: ["latin"],
+  variable: "--font-mono",
+});
 
 export const metadata: Metadata = {
-  metadataBase: new URL(process.env.NEXT_PUBLIC_SITE_URL ?? "https://safwan-shereef.vercel.app"),
-  title: "Safwan Shereef | Backend Developer & Applied AI Engineer",
-  description:
-    "Colorful anime and Formula 1 inspired portfolio for Safwan Muhammed Shereef, a backend developer and applied AI engineer.",
-  openGraph: {
-    title: "Safwan Shereef | Backend Developer & Applied AI Engineer",
-    description:
-      "Backend systems, applied AI, polished product engineering, anime energy, and race-day precision.",
-    images: ["/images/safwan-portrait.jpg"]
-  }
+  title: "Safwan Shereef | Applied AI Engineer",
+  description: "Backend Developer & Applied AI Engineer Portfolio",
 };
 
 export default function RootLayout({
-  children
-}: Readonly<{
-  children: ReactNode;
-}>) {
+  children,
+}: {
+  children: React.ReactNode;
+}) {
   return (
-    <html lang="en">
-      <body>{children}</body>
+    <html lang="en" className={`${spaceGrotesk.variable} ${jetBrainsMono.variable}`}>
+      <body className="font-sans antialiased text-cream relative">
+        <CustomCursor />
+        {children}
+      </body>
     </html>
   );
 }
