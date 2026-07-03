@@ -21,9 +21,9 @@ const config: Config = {
         redbull: "#1e41ff"
       },
       fontFamily: {
-        sans: ["var(--font-inter)", "system-ui", "sans-serif"],
-        display: ["var(--font-space)", "var(--font-inter)", "sans-serif"],
-        mono: ["var(--font-mono)", "monospace"]
+        sans: ["Inter", "ui-sans-serif", "system-ui", "sans-serif"],
+        display: ["Space Grotesk", "Inter", "ui-sans-serif", "system-ui", "sans-serif"],
+        mono: ["JetBrains Mono", "SFMono-Regular", "Consolas", "monospace"]
       },
       boxShadow: {
         anime: "0 24px 80px rgba(90, 63, 115, 0.18)",
