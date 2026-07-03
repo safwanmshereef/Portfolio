@@ -73,6 +73,26 @@ export default function Experience() {
                 <Award className="text-radiant-gold" size={20} />
               </div>
               <div>
+                <h4 className="font-bold text-cream">Ethical Hacking Associate (EHA)</h4>
+                <p className="font-mono text-xs text-cream/60 mt-1">EC-Council Certification validating cybersecurity principles, penetration testing methodologies, and defensive strategies.</p>
+              </div>
+            </div>
+
+            <div className="manga-panel p-4 flex items-start space-x-4">
+              <div className="p-2 bg-radiant-gold/10 rounded">
+                <Award className="text-radiant-gold" size={20} />
+              </div>
+              <div>
+                <h4 className="font-bold text-cream">IELTS Certification</h4>
+                <p className="font-mono text-xs text-cream/60 mt-1">Overall Band Score of 7.0. Verified international corporate business communication standard.</p>
+              </div>
+            </div>
+
+            <div className="manga-panel p-4 flex items-start space-x-4">
+              <div className="p-2 bg-radiant-gold/10 rounded">
+                <Award className="text-radiant-gold" size={20} />
+              </div>
+              <div>
                 <h4 className="font-bold text-cream">Google Cloud AI Infrastructure</h4>
                 <p className="font-mono text-xs text-cream/60 mt-1">6x Specialized Certifications validating deep technical expertise across scalable compute setups, secure data handling, and optimized AI model deployment boundaries.</p>
               </div>
@@ -99,16 +119,26 @@ export default function Experience() {
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            className="manga-panel p-5 border-l-4 border-l-sunset-orange"
+            className="space-y-4"
           >
-             <h4 className="font-bold text-lg">Bachelor of Technology (B.Tech)</h4>
-             <p className="font-mono text-xs text-sunset-orange mt-1">Computer Science and Engineering</p>
-             <p className="font-mono text-sm text-cream/70 mt-2">College of Engineering Kidangoor</p>
-             <p className="font-mono text-xs text-cream/50 mt-1">Graduation Ceremony completed on August 16, 2025.</p>
-             <p className="font-mono text-xs text-cream/70 mt-3 pt-3 border-t border-slate">
-                <span className="text-radiant-gold block mb-1">Language Proficiency</span>
-                IELTS Overall Band Score of 7.0 (Completed September 2025). Verified international corporate business communication standard.
-             </p>
+            <div className="manga-panel p-5 border-l-4 border-l-sunset-orange">
+               <h4 className="font-bold text-lg">Bachelor of Technology (B.Tech)</h4>
+               <p className="font-mono text-xs text-sunset-orange mt-1">Computer Science and Engineering</p>
+               <p className="font-mono text-sm text-cream/70 mt-2">College of Engineering Kidangoor</p>
+               <p className="font-mono text-xs text-cream/50 mt-1">Graduation: August 2025</p>
+            </div>
+
+            <div className="manga-panel p-5 border-l-4 border-l-sunset-orange">
+               <h4 className="font-bold text-lg">Higher Secondary Education (12th Grade)</h4>
+               <p className="font-mono text-sm text-cream/70 mt-2">Good Shepherd Public School</p>
+               <p className="font-mono text-xs text-cream/50 mt-1">Completed: July 2021</p>
+            </div>
+
+            <div className="manga-panel p-5 border-l-4 border-l-sunset-orange">
+               <h4 className="font-bold text-lg">Secondary Education (10th Grade)</h4>
+               <p className="font-mono text-sm text-cream/70 mt-2">Good Shepherd Public School</p>
+               <p className="font-mono text-xs text-cream/50 mt-1">Completed: May 2019</p>
+            </div>
           </motion.div>
 
         </div>
