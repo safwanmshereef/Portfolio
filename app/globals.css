@@ -47,3 +47,21 @@ body::before {
   background-color: rgba(15, 20, 28, 0.8);
   backdrop-filter: blur(8px);
 }
+
+/* Custom Scrollbar for Project Modal */
+.custom-scrollbar::-webkit-scrollbar {
+  width: 8px;
+}
+
+.custom-scrollbar::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.custom-scrollbar::-webkit-scrollbar-thumb {
+  background-color: #334155;
+  border-radius: 4px;
+}
+
+.custom-scrollbar::-webkit-scrollbar-thumb:hover {
+  background-color: #475569;
+}

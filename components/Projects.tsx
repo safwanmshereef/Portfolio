@@ -21,31 +21,34 @@ const projects: Project[] = [
   {
     id: "rag",
     title: "Hybrid-RAG-AI-Assistant",
-    stack: "Python • FAISS • LangChain • Streamlit • Gemini",
-    description: "A production-grade AI Data Assistant with a Dual-Engine architecture. It switches between local privacy (Ollama) and cloud-based reasoning (Gemini).",
+    stack: "Python • FAISS • LangChain • Streamlit • Gemini 3.1",
+    description: "A production-grade AI Data Assistant featuring a unique Dual-Engine architecture. Seamlessly switch between local privacy (Ollama Qwen3.5) and cloud-based reasoning (Gemini 3.1 Flash) for maximum data security and low-latency processing.",
     githubUrl: "https://github.com/safwanmshereef/Hybrid-RAG-AI-Assistant",
     deliverables: [
-      "Dual-Engine Intelligence (Local Ollama Qwen3.5:9B + Cloud Gemini 3.1 Flash)",
-      "Unified Knowledge RAG for PDF, TXT, CSV, and Web URLs",
-      "Agentic Data Insight with auto-visualization and Pandas Dataframe analysis",
-      "Interactive Multimodal UX with Text-to-Speech and Voice-to-Prompt"
+      "🛡️ Dual-Engine Intelligence: Local offline inference via Ollama + Cloud API via Gemini.",
+      "📚 Unified Knowledge RAG: Process multi-file PDFs, TXTs, CSVs and URL Scrape-to-RAG via FAISS.",
+      "📊 Agentic Data Insight: Auto-generates interactive Plotly charts and handles Pandas calculations.",
+      "🔊 Multimodal UX: Interactive Text-to-Speech (TTS) and Voice-to-Prompt capabilities."
     ],
     architectureDetails: [
-      "Streamlit UI Frontend",
-      "LangChain Orchestration",
-      "FAISS Vector Storage using HuggingFace all-MiniLM-L6-v2 Embeddings",
-      "SQLite3 Session Tracking and History Management"
+      "Engineered a robust Multi-File processing pipeline utilizing LangChain, FAISS Vector Indexing, and HuggingFace all-MiniLM-L6-v2 embeddings.",
+      "Implemented a \'Context Inspector\' allowing users to view raw similarity scores and retrieved chunks, bringing observability to AI reasoning."
     ],
     topologyJson: `// Pipeline_Topology.json
-{
-  "Input": ["Docs", "URLs", "Voice"],
-  "RAG_Engine": {
-     "Vector_Store": "FAISS",
-     "Embeddings": "HuggingFace"
-  },
-  "Reasoning_Core": ["Ollama (Local)", "Gemini (Cloud)"],
-  "Output": ["Streamlit_UI", "Plotly_Charts", "TTS"]
-}`
+
+[User Input]
+   |
+   v
+[API Gateway] -> (Auth)
+   |
+   v
+[Logic Core] <-> [Database]
+   |
+   v
+[Output Renderer]
+   |
+   v
+[Client Sync]`
   },
   {
     id: "finance",
@@ -332,21 +335,21 @@ export default function Projects() {
 
             <motion.div
               layoutId={`card-${activeProject.id}`}
-              className="manga-panel w-full max-w-5xl max-h-[90vh] overflow-y-auto relative z-10 flex flex-col bg-ink border border-slate"
+              className="w-full max-w-5xl max-h-[90vh] overflow-y-auto relative z-10 flex flex-col bg-[#0f1115] border border-[#1e293b] rounded-lg shadow-2xl custom-scrollbar"
             >
               {/* Header Bar */}
-              <div className="flex justify-between items-start p-6 border-b border-slate/50">
+              <div className="flex justify-between items-start p-6 border-b border-[#1e293b]">
                  <div>
-                    <motion.div layoutId={`title-${activeProject.id}`} className="font-display font-bold text-3xl text-sunset-orange mb-2 pr-8">
+                    <motion.div layoutId={`title-${activeProject.id}`} className="font-sans font-bold text-3xl text-[#ef4444] mb-2 pr-8">
                       {activeProject.title}
                     </motion.div>
-                    <motion.div layoutId={`stack-${activeProject.id}`} className="font-mono text-sm text-neon-teal">
-                      {activeProject.stack}
+                    <motion.div layoutId={`stack-${activeProject.id}`} className="font-mono text-sm text-[#06b6d4] space-x-2 flex flex-wrap">
+                      {activeProject.stack.split(" • ").map((tech, i) => (<span key={i} className="flex items-center">{i > 0 && <span className="text-gray-600 mx-2">•</span>}{tech}</span>))}
                     </motion.div>
                  </div>
                  <button
                    onClick={() => setSelectedId(null)}
-                   className="text-cream/50 hover:text-sunset-orange interactive"
+                   className="text-gray-500 hover:text-white transition-colors"
                  >
                    <X size={24} />
                  </button>
@@ -356,16 +359,16 @@ export default function Projects() {
               <div className="flex flex-col lg:flex-row p-6 gap-8 overflow-y-auto">
                  {/* Left Column - Details */}
                  <div className="flex-1 space-y-6">
-                    <motion.div layoutId={`desc-${activeProject.id}`} className="text-cream/90 text-sm leading-relaxed pb-4 border-b border-slate/30">
+                    <motion.div layoutId={`desc-${activeProject.id}`} className="text-gray-300 text-base leading-relaxed pb-6 border-b border-[#1e293b]">
                       {activeProject.description}
                     </motion.div>
 
                     <div>
-                        <h4 className="text-sunset-orange font-mono text-sm uppercase font-bold tracking-wider mb-3">Core Deliverables</h4>
+                        <h4 className="text-[#ef4444] font-sans text-sm uppercase font-bold tracking-wider mb-4 mt-6">CORE DELIVERABLES</h4>
                         <ul className="space-y-2">
                            {activeProject.deliverables.map((item, i) => (
-                             <li key={i} className="text-sm text-cream/80 flex items-start">
-                               <span className="text-neon-teal mr-2 mt-0.5">&gt;</span>
+                             <li key={i} className="text-sm text-gray-300 flex items-start">
+                               <span className="text-[#10b981] font-mono mr-2 mt-0.5">&gt;</span>
                                {item}
                              </li>
                            ))}
@@ -376,8 +379,8 @@ export default function Projects() {
                         <h4 className="text-sunset-orange font-mono text-sm uppercase font-bold tracking-wider mb-3 mt-6">System Architecture Details</h4>
                         <ul className="space-y-2">
                            {activeProject.architectureDetails.map((item, i) => (
-                             <li key={i} className="text-sm text-cream/80 flex items-start">
-                               <span className="text-radiant-gold mr-2 mt-0.5">*</span>
+                             <li key={i} className="text-sm text-gray-300 flex items-start">
+                               <span className="text-[#eab308] font-mono mr-2 mt-0.5">*</span>
                                {item}
                              </li>
                            ))}
@@ -388,14 +391,46 @@ export default function Projects() {
                  {/* Right Column - Topology & Actions */}
                  <div className="flex-1 flex flex-col space-y-6">
                     {/* Code Block Container */}
-                    <div className="bg-[#0d1117] border border-slate/30 rounded-md p-4 relative group">
+                    <div className="bg-[#0d1117] border border-[#1e293b] rounded-md p-5 relative group">
                         <div className="absolute top-2 right-2 flex space-x-1">
-                           <div className="w-2 h-2 rounded-full bg-sunset-orange"></div>
-                           <div className="w-2 h-2 rounded-full bg-radiant-gold"></div>
-                           <div className="w-2 h-2 rounded-full bg-neon-teal"></div>
+                           <div className="w-2.5 h-2.5 rounded-full bg-[#ff5f56]"></div>
+                           <div className="w-2.5 h-2.5 rounded-full bg-[#ffbd2e]"></div>
+                           <div className="w-2.5 h-2.5 rounded-full bg-[#27c93f]"></div>
                         </div>
-                        <pre className="font-mono text-xs text-cream/70 whitespace-pre-wrap pt-2 overflow-x-auto">
-                           {activeProject.topologyJson || "// Topology mapping unavailable."}
+                        <pre className="font-mono text-xs whitespace-pre-wrap pt-4 overflow-x-auto text-[#e2e8f0]">
+
+                           {activeProject.topologyJson ? (
+                             activeProject.topologyJson.split('\n').map((line, i) => {
+                               if (line.startsWith('//')) return <span key={i} className="text-gray-500">{line}\n</span>;
+                               if (line.includes('[')) {
+                                  const parts = line.split(/(\[.*?\])/g);
+                                  return (
+                                    <span key={i}>
+                                      {parts.map((part, j) =>
+                                        part.startsWith('[') ? <span key={j} className="text-[#eab308]">{part}</span> : <span key={j}>{part}</span>
+                                      )}
+                                      \n
+                                    </span>
+                                  )
+                               }
+                               if (line.includes('(')) {
+                                  const parts = line.split(/(\(.*?\))/g);
+                                  return (
+                                    <span key={i}>
+                                      {parts.map((part, j) =>
+                                        part.startsWith('(') ? <span key={j} className="text-[#f97316]">{part}</span> : <span key={j}>{part}</span>
+                                      )}
+                                      \n
+                                    </span>
+                                  )
+                               }
+                               if (line.includes('|') || line.includes('v') || line.includes('->') || line.includes('<->')) {
+                                  return <span key={i} className="text-[#10b981]">{line}\n</span>;
+                               }
+                               return <span key={i}>{line}\n</span>;
+                             })
+                           ) : "// Topology mapping unavailable."}
+
                         </pre>
                     </div>
 
@@ -405,7 +440,7 @@ export default function Projects() {
                           href={activeProject.githubUrl}
                           target="_blank"
                           rel="noopener noreferrer"
-                          className="w-full py-3 border border-slate/50 hover:border-cream flex justify-center items-center space-x-2 font-mono text-sm uppercase interactive transition-colors"
+                          className="w-full py-3 border border-[#1e293b] text-gray-300 hover:text-white hover:bg-[#1e293b]/50 rounded flex justify-center items-center space-x-2 font-mono text-sm uppercase transition-colors"
                         >
                           <FolderGit2 size={16} />
                           <span>Repository Origin</span>
@@ -416,7 +451,7 @@ export default function Projects() {
                              href={activeProject.demoUrl}
                              target="_blank"
                              rel="noopener noreferrer"
-                             className="w-full py-3 border border-radiant-gold text-radiant-gold hover:bg-radiant-gold/10 flex justify-center items-center space-x-2 font-mono text-sm uppercase interactive transition-colors"
+                             className="w-full py-3 border border-[#1e293b] text-gray-300 hover:text-white hover:bg-[#1e293b]/50 rounded flex justify-center items-center space-x-2 font-mono text-sm uppercase transition-colors mt-4"
                            >
                              <ExternalLink size={16} />
                              <span>External Uplink</span>
