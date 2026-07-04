@@ -81,7 +81,7 @@ export default function Hero() {
           className="relative w-32 h-32 md:w-40 md:h-40 rounded-full overflow-hidden border-4 manga-panel shadow-[0_0_20px_rgba(0,0,0,0.5)] interactive group"
           style={{ borderColor: selectedChar.color, boxShadow: `0 0 20px ${selectedChar.color}80` }}
         >
-          <img src="/images/profile.png" alt="Safwan Shereef Profile" className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110" />
+          <img src="/images/safwan-portrait.jpg" alt="Safwan Shereef Profile" className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110" />
           <div className="absolute inset-0 bg-gradient-to-t from-ink/40 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none" />
         </motion.div>
 

@@ -35,44 +35,8 @@ const projects: Project[] = [
     ],
     githubUrl: "https://github.com/safwanmshereef/Hybrid-RAG-AI-Assistant",
   },
-  {
-    id: "nutri",
-    title: "NUTRI VISION",
-    stack: "Python • Streamlit • YOLOv8 • Groq LLM",
-    description: "An advanced, fully autonomous meal analysis system utilizing YOLOv8 computer vision and Groq-powered LLMs to calculate intricate nutritional profiles in real-time.",
-    features: [
-      "👁️ Computer Vision: Custom-trained YOLOv8 model deployed for instant, high-accuracy food item bounding box detection (achieved 0.81 mAP50-95).",
-      "🧠 LLM Integration: Integrates LLaMA 3.1 70B Versatile via Groq API for lightning-fast, context-aware nutritional breakdowns.",
-      "⚙️ OCR & Analysis: Features fallback OCR reading for packaged goods and detailed macro/micronutrient estimation.",
-      "🎨 UI Framework: A heavily customized Streamlit application overcoming standard limitations via custom CSS for a premium, responsive feel."
-    ],
-    deepDive: [
-      "Orchestrates a complex multi-model pipeline: User Input -> YOLOv8 Detection -> Heuristic Filtering -> Groq/LLaMA Prompting -> Output Render.",
-      "Significantly optimized system latency, bringing total turnaround time from image upload to full analysis down to under 3 seconds.",
-      "Implemented a robust prompt engineering strategy to enforce strict JSON schema outputs from the LLM, preventing parsing failures."
-    ],
-    githubUrl: "https://github.com/safwanmshereef/NUTRI_VISION_DETAILED_FOOD_ANALYSIS_AI_FOR_HEALTH_AND_WELLNESS",
-    demoUrl: "https://safwanmshereef-nutri-vision-detailed-food--streamlit-app-i02n66.streamlit.app/",
-    iframeSupport: true
-  },
-  {
-    id: "finance",
-    title: "FINANCE INSIGHT",
-    stack: "Python • Streamlit • Gemini Flash 1.5",
-    description: "A secure, specialized financial analytics dashboard providing high-speed, LLM-driven insights for enterprise fiscal data streams.",
-    features: [
-      "⚡ Lightning Inference: Powered by Google's Gemini Flash 1.5 for immediate query responses and narrative generation.",
-      "🔒 Data Security: Architecture strictly separates core logic from the LLM, ensuring raw PII/financial data is never exposed to external models.",
-      "📊 Intelligent Analytics: Automatically generates executive summaries, anomaly detection reports, and trend forecasts.",
-      "🖥️ Dashboard: Clean, responsive UI built with Streamlit for visualizing complex fiscal data streams via interactive Plotly charts."
-    ],
-    deepDive: [
-      "Addresses critical enterprise concerns regarding LLM data leakage by decoupling heuristic analysis from narrative generation.",
-      "Implemented robust retry mechanisms and fallback logic for API rate limits and network instability.",
-      "Engineered specialized prompting to ensure the LLM strictly adheres to financial terminologies and avoids hallucinating numbers."
-    ],
-    githubUrl: "https://github.com/safwanmshereef/Finance_insight",
-  },
+
+
   {
     id: "release_app",
     title: "ProductionReleaseApp",
@@ -146,21 +110,21 @@ const projects: Project[] = [
   },
   {
     id: "store_app",
-    title: "STORE APP ANALYTICS",
-    stack: "Python • Pandas • Scikit-Learn • Plotly",
-    description: "An end-to-end data science project analyzing retail application performance, user retention, and sales forecasting using machine learning.",
+    title: "STORE APP (Internship)",
+    stack: "Next.js • FastAPI • Role-Based Auth",
+    description: "A two-part store operations and compliance system with role-based access, OTP login, compliance tracking, and third-party system integration.",
     features: [
-      "📊 Exploratory Data Analysis: Comprehensive EDA using Pandas and Seaborn to uncover hidden seasonal trends.",
-      "🤖 Predictive Modeling: Trained Random Forest and Gradient Boosting models (Scikit-Learn) to forecast future application engagement.",
-      "📈 Interactive Visualizations: Built dynamic, drill-down capable dashboards using Plotly to present findings to stakeholders.",
-      "🧹 Data Wrangling: Complex ETL pipelines to clean, normalize, and impute missing values across millions of rows."
+      "Authentication UI & Role-based routing (Admin, Manager, Operations).",
+      "Comprehensive Dashboard views powered by a robust FastAPI backend.",
+      "Data fetching, task workflows, and external inventory integrations.",
+      "Compliance tracking, stock verification, and legal document management."
     ],
     deepDive: [
-      "Transformed raw, noisy application telemetry logs into actionable business intelligence metrics.",
-      "Handled significant class imbalance in user churn prediction by utilizing SMOTE and adjusting classification thresholds.",
-      "Packaged the entire analysis into reproducible Jupyter Notebooks with extensive markdown documentation for peer review."
+      "Decoupled Architecture: Next.js frontend focusing on people-facing dashboards, while FastAPI backend handles business logic and scheduled workflows.",
+      "Implemented a secure OTP login experience mapped to distinct operational roles.",
+      "Engineered rich UI interactions and animations for complaint handling and task execution modules."
     ],
-    githubUrl: "https://github.com/safwanmshereef/STOREAPP",
+    githubUrl: "https://github.com/safwanmshereef/store-application",
   },
   {
     id: "fruit_veggie",
@@ -199,23 +163,24 @@ const projects: Project[] = [
     githubUrl: "https://github.com/safwanmshereef/CFTA",
   },
   {
-    id: "zcb",
-    title: "Zero Carbon Blockchain",
-    stack: "Solidity • React • Node.js • Web3.js",
-    description: "A decentralized platform utilizing blockchain technology to transparently track, verify, and trade carbon credits, preventing double-counting.",
+    id: "finance-dashboard",
+    title: "Finance Dashboard",
+    stack: "FastAPI • Streamlit • SQLAlchemy • Postgres/SQLite",
+    description: "A full-stack financial data processing and access control demo built with a decoupled architecture.",
     features: [
-      "⛓️ Smart Contracts: Secure Solidity contracts deployed on Ethereum testnets to mint and burn carbon credit tokens.",
-      "🌐 dApp Interface: A responsive React frontend integrating Web3.js for seamless user wallet connections (MetaMask).",
-      "🔒 Verification System: Cryptographic verification ensuring that claimed carbon offsets are backed by real-world data.",
-      "⚙️ Node.js Backend: An intermediary service for caching blockchain reads and handling off-chain metadata."
+      "User management with roles (viewer, analyst, admin) and status tracking.",
+      "Role-based access control across robust API endpoints.",
+      "Financial records CRUD with comprehensive validation and filtering.",
+      "Dashboard summary APIs for aggregates and dynamic trend analysis."
     ],
     deepDive: [
-      "Tackled the 'double-spending' problem in carbon markets by leveraging the immutable ledger of a blockchain.",
-      "Optimized smart contract gas costs by heavily refining data structures and utilizing event logs for state history.",
-      "Implemented robust error handling for common Web3 transaction failures (e.g., dropped transactions, network congestion)."
+      "Implemented Date-range analytics controls on dashboard summary and trends.",
+      "Built a Monthly budget tracker in the sidebar with an active utilization indicator.",
+      "Developed a search-enabled records explorer across category and notes.",
+      "Added one-click CSV export functionality for the filtered records table."
     ],
-    githubUrl: "https://github.com/safwanmshereef/ZCB",
-  }
+    githubUrl: "https://github.com/safwanmshereef/Finance-Dashboard",
+  },
 ];
 
 export default function Projects() {
