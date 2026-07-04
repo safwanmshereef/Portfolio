@@ -2,13 +2,24 @@
 
 import { useState } from "react";
 import { motion } from "framer-motion";
-import { Server, Database, Container, Brain, LayoutGrid } from "lucide-react";
+import { Server, Database, Container, Brain, LayoutGrid, Terminal } from "lucide-react";
 
 const skillNodes = [
   { id: "backend", label: "Backend Core", icon: Server, skills: ["Python", "FastAPI", "Node.js", "REST APIs", "C", "C++"] },
   { id: "ai", label: "AI Orchestration", icon: Brain, skills: ["LangChain", "RAG Pipelines", "FAISS (Vector Indexing)", "Agentic Tool Calling", "TensorFlow", "OpenCV", "Prompt Tuning"] },
+  { id: "ai-devtools", label: "AI Orchestration & Dev Tools", icon: Terminal, skills: [
+    "Cursor / VS Code",
+    "Google AI Studio",
+    "Google Antigravity / Jules",
+    "Claude Code / Qwen Code",
+    "OpenCode / OpenAI Codex",
+    "Ollama CLI & Models",
+    "Lovable / Emergent / Repl.it",
+    "Google Stitch",
+    "Android Studio"
+  ] },
   { id: "data", label: "Data Eng", icon: Database, skills: ["Advanced SQL", "PostgreSQL Schema Optimization", "Pandas"] },
-  { id: "infra", label: "DevOps", icon: Container, skills: ["Docker Containerization", "Cloud Compute Clusters", "Linux Systems Management", "Git/GitHub Version Control"] },
+  { id: "infra", label: "DevOps & Infrastructure", icon: Container, skills: ["Docker Containerization", "Cloud Compute Clusters", "Linux Systems Management", "Git/GitHub Version Control", "Firebase (Auth / Firestore / Data Connect)"] },
   { id: "frontend", label: "Frontend & Mobile", icon: LayoutGrid, skills: ["React", "Next.js", "React Native", "Tailwind CSS", "Framer Motion"] },
 ];
 
@@ -27,7 +38,7 @@ export default function SkillTree() {
         <p className="font-mono text-cream/50 mt-2">Hover to reveal circuit paths and active stack capabilities.</p>
       </div>
 
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
         {skillNodes.map((node) => (
           <div
             key={node.id}
