@@ -7,27 +7,26 @@ export default function CustomCursor() {
   const cursorRef = useRef<HTMLDivElement>(null);
   const dotRef = useRef<HTMLDivElement>(null);
   const [isHovering, setIsHovering] = useState(false);
+  const mousePos = useRef({ x: 0, y: 0 });
+  const cursorPos = useRef({ x: 0, y: 0 });
 
   useEffect(() => {
     let animationFrameId: number;
-    let mouseX = 0;
-    let mouseY = 0;
-    let cursorX = 0;
-    let cursorY = 0;
 
     const updateMousePosition = (e: MouseEvent) => {
-      mouseX = e.clientX;
-      mouseY = e.clientY;
+      mousePos.current.x = e.clientX;
+      mousePos.current.y = e.clientY;
     };
 
     const animateCursor = () => {
       // Smooth interpolation
-      cursorX += (mouseX - cursorX) * 0.2;
-      cursorY += (mouseY - cursorY) * 0.2;
+      cursorPos.current.x += (mousePos.current.x - cursorPos.current.x) * 0.2;
+      cursorPos.current.y += (mousePos.current.y - cursorPos.current.y) * 0.2;
 
       if (cursorRef.current) {
-        cursorRef.current.style.transform = `translate3d(${cursorX - 16}px, ${cursorY - 16}px, 0) scale(${isHovering ? 1.5 : 1})`;
-        cursorRef.current.style.borderColor = isHovering ? "#ff5a5f" : "#00f5d4";
+        const hoverActive = cursorRef.current.dataset.hovering === "true";
+        cursorRef.current.style.transform = `translate3d(${cursorPos.current.x - 16}px, ${cursorPos.current.y - 16}px, 0) scale(${hoverActive ? 1.5 : 1})`;
+        cursorRef.current.style.borderColor = hoverActive ? "#ff5a5f" : "#00f5d4";
       }
 
       animationFrameId = requestAnimationFrame(animateCursor);
@@ -57,12 +56,13 @@ export default function CustomCursor() {
       window.removeEventListener("mouseover", handleMouseOver);
       cancelAnimationFrame(animationFrameId);
     };
-  }, [isHovering]);
+  }, []); // Run only once
 
   return (
     <>
       <div
         ref={cursorRef}
+        data-hovering={isHovering}
         className="fixed top-0 left-0 w-8 h-8 border-2 border-neon-teal rounded-full pointer-events-none z-[9999] flex items-center justify-center mix-blend-difference transition-colors duration-200"
         style={{ willChange: "transform" }}
       >
