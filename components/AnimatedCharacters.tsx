@@ -6,16 +6,17 @@ import { useEffect, useState } from "react";
 // List of all characters requested + Pokemon
 const CHARACTERS = [
   // Existing local pokemon
-  { id: 1, name: "Pikachu", type: "img", url: "/assets/anime/pikachu.gif", color: "#fee440", scale: 1.5, funAnim: "bounce" },
-  { id: 2, name: "Charizard", type: "img", url: "/assets/anime/charizard.gif", color: "#ff5a5f", scale: 1.5, funAnim: "fly" },
-  { id: 3, name: "Blastoise", type: "img", url: "/assets/anime/blastoise.gif", color: "#00f5d4", scale: 1.5, funAnim: "walk" },
-  { id: 4, name: "Venusaur", type: "img", url: "/assets/anime/venusaur.gif", color: "#4ade80", scale: 1.5, funAnim: "walk" },
+  // { id: 1, name: "Pikachu", type: "img", url: "/assets/anime/pikachu.gif?v=2", color: "#fee440", scale: 1.5, funAnim: "bounce" },
+  // { id: 2, name: "Charizard", type: "img", url: "/assets/anime/charizard.gif?v=2", color: "#ff5a5f", scale: 1.5, funAnim: "fly" },
+  // { id: 3, name: "Blastoise", type: "img", url: "/assets/anime/blastoise.gif?v=2", color: "#00f5d4", scale: 1.5, funAnim: "walk" },
+  // { id: 4, name: "Venusaur", type: "img", url: "/assets/anime/venusaur.gif?v=2", color: "#4ade80", scale: 1.5, funAnim: "walk" },
 
   // Real Anime GIFs
-  { id: 5, name: "Naruto", type: "img", url: "/assets/anime/naruto.gif", color: "#f97316", scale: 1.5, funAnim: "walk" },
-  { id: 6, name: "Zero Two", type: "img", url: "/assets/anime/zero_two.gif", color: "#f43f5e", scale: 1.5, funAnim: "float" },
-  { id: 7, name: "Mai Sakurajima", type: "img", url: "/assets/anime/mai.gif", color: "#a855f7", scale: 1.5, funAnim: "walk" },
-  { id: 8, name: "Kakashi", type: "img", url: "/assets/anime/kakashi.gif", color: "#64748b", scale: 1.5, funAnim: "walk" }
+  { id: 5, name: "Naruto", type: "img", url: "/assets/anime/naruto.gif?v=2", color: "#f97316", scale: 1.5, funAnim: "walk" },
+  { id: 6, name: "Zero Two", type: "img", url: "/assets/anime/zero_two.gif?v=2", color: "#f43f5e", scale: 1.5, funAnim: "float" },
+  { id: 7, name: "Mai Sakurajima", type: "img", url: "/assets/anime/mai.gif?v=2", color: "#a855f7", scale: 1.5, funAnim: "walk" },
+  { id: 8, name: "Kakashi", type: "img", url: "/assets/anime/kakashi.gif?v=2", color: "#64748b", scale: 1.5, funAnim: "walk" },
+  // { id: 9, name: "Okarun", type: "img", url: "/assets/anime/okarun.gif?v=2", color: "#10b981", scale: 1.5, funAnim: "zoom" }
 ];
 
 export default function AnimatedCharacters() {
@@ -68,7 +69,7 @@ export default function AnimatedCharacters() {
 
         // Vary the speed so some are fast and some are slow
         const duration = 10 + Math.random() * 25; // 10s to 35s duration
-        const delay = Math.random() * 20; // Staggered start times up to 20s
+        const delay = Math.random() * 5; // Staggered start times up to 20s
 
         // Flip horizontally if moving right to left (for images)
         const scaleX = isLeftToRight ? 1 : -1;

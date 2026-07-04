@@ -125,7 +125,7 @@ export default function F1MiniGame() {
             transform: 'translateY(-50%)'
           }}
         >
-          <div className="w-12 h-4 bg-sunset-orange border-2 border-ink shadow-glow rounded-sm" />
+          <div className="w-16 h-8 bg-[repeating-linear-gradient(45deg,#000000,#000000_10px,#ffcc00_10px,#ffcc00_20px)] border border-white shadow-[0_0_15px_rgba(255,204,0,0.5)] rounded-sm flex items-center justify-center"><span className="text-[8px] font-bold text-white bg-black/50 px-1">BARRIER</span></div>
         </div>
       ))}
 

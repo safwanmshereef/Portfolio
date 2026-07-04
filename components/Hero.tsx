@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 import { motion } from "framer-motion";
-import { Terminal, Database, BrainCircuit, ExternalLink } from "lucide-react";
+import { Terminal, Database, BrainCircuit, ExternalLink, Mail, Phone, MapPin } from "lucide-react";
 
 type Character = {
   id: string;
@@ -81,7 +81,7 @@ export default function Hero() {
           className="relative w-32 h-32 md:w-40 md:h-40 rounded-full overflow-hidden border-4 manga-panel shadow-[0_0_20px_rgba(0,0,0,0.5)] interactive group"
           style={{ borderColor: selectedChar.color, boxShadow: `0 0 20px ${selectedChar.color}80` }}
         >
-          <img src="/images/safwan-portrait.jpg" alt="Safwan Shereef Profile" className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110" />
+          <img src="/assets/safwan-portrait.jpg" alt="Safwan Shereef Profile" className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110" />
           <div className="absolute inset-0 bg-gradient-to-t from-ink/40 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none" />
         </motion.div>
 
@@ -130,7 +130,7 @@ export default function Hero() {
            initial={{ opacity: 0 }}
            animate={{ opacity: 1 }}
            transition={{ delay: 0.6 }}
-           className="flex space-x-4 pt-4"
+           className="flex flex-wrap gap-4 pt-4"
         >
           <a href="/documents/Safwan_Shereef_Resume.pdf" target="_blank" rel="noopener noreferrer" className="px-6 py-3 border-2 font-bold uppercase tracking-wider interactive flex items-center space-x-2" style={{ borderColor: selectedChar.color, color: selectedChar.color }}>
             <span>View Codex (Resume)</span>
@@ -145,8 +145,38 @@ export default function Hero() {
         </motion.div>
       </div>
 
-      {/* Right Pane: Character Select */}
-      <div className="w-full lg:w-1/2 mt-16 lg:mt-0 flex flex-col items-end z-10">
+      {/* Right Pane: Character Select and Contact Info */}
+      <div className="w-full lg:w-1/2 mt-16 lg:mt-0 flex flex-col items-end z-10 space-y-12">
+
+        {/* Contact Info Widget */}
+        <motion.div
+          initial={{ opacity: 0, x: 50 }}
+          animate={{ opacity: 1, x: 0 }}
+          transition={{ delay: 0.5 }}
+          className="manga-panel p-6 w-full max-w-md border-l-4"
+          style={{ borderLeftColor: selectedChar.color }}
+        >
+          <h3 className="font-display font-bold text-lg uppercase tracking-widest mb-4 text-cream/70">Comms Link</h3>
+          <div className="space-y-3 font-mono text-sm">
+            <a href="mailto:safwanmshereef7@gmail.com" className="flex items-center space-x-3 text-cream hover:text-white interactive">
+              <Mail size={16} style={{ color: selectedChar.color }} />
+              <span>safwanmshereef7@gmail.com</span>
+            </a>
+            <a href="tel:+919020822772" className="flex items-center space-x-3 text-cream hover:text-white interactive">
+              <Phone size={16} style={{ color: selectedChar.color }} />
+              <span>+91 90208 22772</span>
+            </a>
+            <div className="flex items-start space-x-3 text-cream/80">
+              <MapPin size={16} className="mt-0.5" style={{ color: selectedChar.color }} />
+              <div>
+                <p>Base: Bengaluru</p>
+                <p className="text-xs text-cream/50">Origin: Kottayam</p>
+              </div>
+            </div>
+          </div>
+        </motion.div>
+
+        <div className="w-full max-w-md">
         <div className="text-right mb-6">
           <h3 className="font-display text-2xl uppercase tracking-widest text-cream/50">Select Your Character</h3>
           <p className="font-mono text-sm" style={{ color: selectedChar.color }}>Active Aura: {selectedChar.series}</p>
@@ -185,6 +215,7 @@ export default function Hero() {
                 <span className="w-3 h-3 rounded-full bg-mercedes shadow-[0_0_8px_#00a19b] interactive" title="Mercedes" />
                 <span className="w-3 h-3 rounded-full bg-redbull shadow-[0_0_8px_#1e41ff] interactive" title="Red Bull / Verstappen" />
              </div>
+        </div>
         </div>
       </div>
     </section>
