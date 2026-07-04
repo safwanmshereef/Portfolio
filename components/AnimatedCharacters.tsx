@@ -11,30 +11,11 @@ const CHARACTERS = [
   { id: 3, name: "Blastoise", type: "img", url: "/assets/anime/blastoise.gif", color: "#00f5d4", scale: 1.5, funAnim: "walk" },
   { id: 4, name: "Venusaur", type: "img", url: "/assets/anime/venusaur.gif", color: "#4ade80", scale: 1.5, funAnim: "walk" },
 
-  // New Characters (Using CSS/Framer text-based dynamic rendering or placeholders if sprites aren't available)
-  // Instead of static images that may not exist, we'll use a stylized text approach for the new ones, which looks very "hacker/anime" and guarantees they render and move dynamically.
-  { id: 5, name: "Naruto", type: "text", text: "🍥 Naruto", color: "#f97316", scale: 1.5, funAnim: "spin" },
-  { id: 6, name: "Zero Two", type: "text", text: "🎀 Zero Two", color: "#f43f5e", scale: 1.5, funAnim: "fly" },
-  { id: 7, name: "Mai Sakurajima", type: "text", text: "🐰 Mai", color: "#a855f7", scale: 1.5, funAnim: "fadeBounce" },
-  { id: 8, name: "Turbo Granny", type: "text", text: "👵 Turbo Granny", color: "#10b981", scale: 1.5, funAnim: "zoom" },
-  { id: 9, name: "Okarun", type: "text", text: "👓 Okarun", color: "#3b82f6", scale: 1.5, funAnim: "zigzag" },
-  { id: 10, name: "Momo", type: "text", text: "🍑 Momo", color: "#ec4899", scale: 1.5, funAnim: "float" },
-  { id: 11, name: "Kakashi", type: "text", text: "📖 Kakashi", color: "#64748b", scale: 1.5, funAnim: "teleport" },
-  { id: 12, name: "Itachi", type: "text", text: "🦅 Itachi", color: "#dc2626", scale: 1.5, funAnim: "float" },
-  { id: 13, name: "Tsunade", type: "text", text: "🐌 Tsunade", color: "#84cc16", scale: 1.5, funAnim: "bounce" },
-  { id: 14, name: "Hinata", type: "text", text: "💜 Hinata", color: "#d946ef", scale: 1.5, funAnim: "walk" },
-  { id: 15, name: "Seiko", type: "text", text: "🔮 Seiko", color: "#0ea5e9", scale: 1.5, funAnim: "spin" },
-  { id: 16, name: "Kirito", type: "text", text: "⚔️ Kirito", color: "#1e293b", scale: 1.5, funAnim: "zigzag" },
-  { id: 17, name: "Asuna", type: "text", text: "🤺 Asuna", color: "#fca5a5", scale: 1.5, funAnim: "fly" },
-  { id: 18, name: "Rem", type: "text", text: "❄️ Rem", color: "#60a5fa", scale: 1.5, funAnim: "bounce" },
-  { id: 19, name: "Yor Forger", type: "text", text: "🌹 Yor", color: "#be123c", scale: 1.5, funAnim: "teleport" },
-  { id: 20, name: "Akari Watanabe", type: "text", text: "🌸 Akari", color: "#fbcfe8", scale: 1.5, funAnim: "float" },
-  { id: 21, name: "Stella", type: "text", text: "🔥 Stella", color: "#ef4444", scale: 1.5, funAnim: "fly" },
-  { id: 22, name: "Marin Kitagawa", type: "text", text: "👗 Marin", color: "#fde047", scale: 1.5, funAnim: "spin" },
-  { id: 23, name: "Alisa Kujou", type: "text", text: "🇷🇺 Alisa", color: "#cbd5e1", scale: 1.5, funAnim: "walk" },
-  { id: 24, name: "Miyako Shikimori", type: "text", text: "✨ Shikimori", color: "#f472b6", scale: 1.5, funAnim: "fadeBounce" },
-  { id: 25, name: "Rias", type: "text", text: "😈 Rias (DxD)", color: "#991b1b", scale: 1.5, funAnim: "float" },
-  { id: 26, name: "Chizuru", type: "text", text: "👘 Chizuru", color: "#fb923c", scale: 1.5, funAnim: "walk" }
+  // Real Anime GIFs
+  { id: 5, name: "Naruto", type: "img", url: "/assets/anime/naruto.gif", color: "#f97316", scale: 1.5, funAnim: "walk" },
+  { id: 6, name: "Zero Two", type: "img", url: "/assets/anime/zero_two.gif", color: "#f43f5e", scale: 1.5, funAnim: "float" },
+  { id: 7, name: "Mai Sakurajima", type: "img", url: "/assets/anime/mai.gif", color: "#a855f7", scale: 1.5, funAnim: "walk" },
+  { id: 8, name: "Kakashi", type: "img", url: "/assets/anime/kakashi.gif", color: "#64748b", scale: 1.5, funAnim: "walk" }
 ];
 
 export default function AnimatedCharacters() {
@@ -117,7 +98,6 @@ export default function AnimatedCharacters() {
                animate={getFunAnimation(char.funAnim)}
                transition={getFunAnimation(char.funAnim).transition}
             >
-              {char.type === "img" ? (
                 <img
                    src={char.url}
                    alt={char.name}
@@ -129,19 +109,6 @@ export default function AnimatedCharacters() {
                      height: '80px'
                    }}
                 />
-              ) : (
-                <div
-                  className="px-3 py-1 rounded-full font-display font-bold text-sm whitespace-nowrap bg-ink/80 border"
-                  style={{
-                    color: char.color,
-                    borderColor: char.color,
-                    boxShadow: `0 0 15px ${char.color}80, inset 0 0 10px ${char.color}40`,
-                    textShadow: `0 0 5px ${char.color}`
-                  }}
-                >
-                  {char.text}
-                </div>
-              )}
             </motion.div>
           </motion.div>
         );
