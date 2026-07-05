@@ -136,7 +136,7 @@ export default function F1MiniGame() {
       >
         {/* Real F1 Car Representation */}
         <div className="relative w-24 h-40 flex flex-col items-center justify-center filter drop-shadow-[0_0_15px_rgba(225,6,0,0.8)]">
-           <img src="https://clipart-library.com/images_k/f1-car-transparent/f1-car-transparent-13.png" alt="F1 Car" className="w-full h-full object-contain -rotate-90" />
+           <svg viewBox="0 0 100 200" className="w-full h-full"><path d="M40 20 L60 20 L70 50 L80 120 L70 160 L60 180 L40 180 L30 160 L20 120 L30 50 Z" fill="#E32636"/><path d="M45 40 L55 40 L55 70 L45 70 Z" fill="#000000"/><path d="M35 130 L65 130 L65 150 L35 150 Z" fill="#000000"/><path d="M25 60 L35 60 L35 100 L25 100 Z" fill="#111111"/><path d="M65 60 L75 60 L75 100 L65 100 Z" fill="#111111"/><path d="M25 140 L35 140 L35 170 L25 170 Z" fill="#111111"/><path d="M65 140 L75 140 L75 170 L65 170 Z" fill="#111111"/></svg>
         </div>
       </div>
     </div>

@@ -31,24 +31,19 @@ const projects: Project[] = [
       "🔊 Multimodal UX: Interactive Text-to-Speech (TTS) and Voice-to-Prompt capabilities."
     ],
     architectureDetails: [
-      "Engineered a robust Multi-File processing pipeline utilizing LangChain, FAISS Vector Indexing, and HuggingFace all-MiniLM-L6-v2 embeddings.",
-      "Implemented a 'Context Inspector' allowing users to view raw similarity scores and retrieved chunks, bringing observability to AI reasoning."
+      "Local Inference Layer: Offline Qwen3.5 model execution.",
+      "Cloud Intelligence Layer: Gemini 3.1 API for complex reasoning.",
+      "Vector Storage: Local FAISS indexing for rapid document retrieval.",
+      "UI Layer: Streamlit providing interactive chat and multimodal inputs."
     ],
-    topologyJson: `// Pipeline_Topology.json
-
-[User Input]
-   |
-   v
-[API Gateway] -> (Auth)
-   |
-   v
-[Logic Core] <-> [Database]
-   |
-   v
-[Output Renderer]
-   |
-   v
-[Client Sync]`
+    topologyJson: `
+[Streamlit UI] <-> [LangChain Orchestrator]
+       |                      |
+[FAISS Store]         (Dual Engine Router)
+       v                      v
+(Local Documents)      +---------------+---------------+
+                       | Local Ollama  | Cloud Gemini  |
+                       +---------------|---------------+`
   },
   {
     id: "finance",
@@ -64,28 +59,21 @@ const projects: Project[] = [
       "Dashboard summary APIs for aggregates and dynamic trend analysis."
     ],
     architectureDetails: [
-      "Implemented Date-range analytics controls on dashboard summary and trends.",
-      "Built a Monthly budget tracker in the sidebar with an active utilization indicator.",
-      "Developed a search-enabled records explorer across category and notes.",
-      "Added one-click CSV export functionality for the filtered records."
+      "API Layer: FastAPI routing and dependency injection.",
+      "Data Access Layer: SQLAlchemy ORM interacting with DB.",
+      "Frontend Layer: Streamlit consuming REST APIs asynchronously."
     ],
-    topologyJson: `// Pipeline_Topology.json
-[User Input]
-   |
-   v
-[API Gateway] -> (Auth)
-   |
-   v
-[Logic Core] <-> [Database]
-   |
-   v
-[Output Renderer]
-   |
-   v
-[Client Sync]`
+    topologyJson: `
+[Streamlit Frontend] -> (REST API Calls)
+                              |
+                       [FastAPI Backend]
+                              |
+                       (SQLAlchemy ORM)
+                              |
+                    [Postgres/SQLite DB]`
   },
   {
-    id: "release_app",
+    id: "ops",
     title: "ProductionReleaseApp",
     stack: "Python • Streamlit • SQLite • Gemini AI",
     description: "An Enterprise Ops Hub for monitoring pipelines and managing incidents. Includes real-time job tracking and AI-powered smart ticketing triage.",
@@ -97,48 +85,76 @@ const projects: Project[] = [
       "Dynamic Status Dashboard mapping deployment metrics and incidents."
     ],
     architectureDetails: [
-      "Streamlit application acting as centralized Ops Hub.",
-      "SQLite DB managing continuous log streaming state.",
-      "Native Gemini SDK integrated for auto-resolution generation.",
-      "Automated categorization of severity and impact levels."
+      "Core Logic: Python backend handling state and API interactions.",
+      "AI Integration: Gemini API for contextual triage.",
+      "Persistence: SQLite managing job states and historical data."
     ],
-    topologyJson: `// Pipeline_Topology.json
-{
-  "Ops_Triggers": ["Deploy_Events", "Incident_Logs"],
-  "State_Manager": "SQLite",
-  "AI_Triage": "Google Gemini",
-  "Hub_Dashboard": {
-    "Metrics": "Live Status",
-    "Tickets": "Smart Prioritization"
-  }
-}`
+    topologyJson: `
+[Ops Dashboard] <-> [Python Core Engine]
+                           |
+            +--------------+--------------+
+            |                             |
+      [Gemini API]                  [SQLite DB]
+      (AI Triage)                   (Job States)`
   },
   {
-    id: "zenturio",
+    id: "chat",
     title: "ZenturioChatbot",
     stack: "Python • Streamlit • Gemini SDK",
     description: "Production-grade, context-aware AI assistant built with Google's native Gemini SDK featuring sliding-window token optimization.",
     githubUrl: "https://github.com/safwanmshereef/ZenturioChatbot",
     demoUrl: "https://zenturiotechchatbot.streamlit.app",
+    iframeSupport: true,
     deliverables: [
-      "Context-Aware Responses maintaining full conversation history.",
-      "Sliding-Window Token Optimizer to accurately track BPE tokens.",
-      "Anti-Hallucination & Zero-Repetition system prompt.",
-      "Auto Model Detection Engine prioritizing newest capable models."
+      "Context-Aware multi-turn conversation memory.",
+      "Sliding-Window Token Optimizer utilizing tiktoken.",
+      "Strict Anti-Hallucination rules via system prompts.",
+      "Auto Model Detection Engine connecting to highest capable model available."
     ],
     architectureDetails: [
-      "Data Persistence & Multi-Chat Management using SQLite database.",
-      "Real-Time Analytics Dashboard tracking session tokens and API calls.",
-      "Tokenization handled efficiently by Tiktoken (cl100k_base).",
-      "Dynamic context management gracefully truncating older messages."
-    ]
+      "Memory Manager: Sliding-window token tracking.",
+      "API Client: Official Google Gemini SDK integration.",
+      "UI Handler: Streamlit state management."
+    ],
+    topologyJson: `
+[User Input] -> [Streamlit UI]
+                     |
+            [Memory Manager] (Truncates History)
+                     |
+            [Gemini SDK Client] -> [Google Cloud AI]`
+  },
+  {
+    id: "nutri",
+    title: "NutriScan AI",
+    stack: "Python • Streamlit • Google Gemini Vision",
+    description: "Smart health companion. Uses Gemini Vision Pro to scan food photos, instantly detect calories, and act as an AI chef.",
+    githubUrl: "https://github.com/safwanmshereef/nutriscan-ai",
+    deliverables: [
+      "Instant Calorie & Macro Detection from food images.",
+      "Dynamic AI Chef generating custom diet-aware recipes.",
+      "Health Risk Highlighting for scanned ingredients.",
+      "Personalized intake tracking based on dietary goals."
+    ],
+    architectureDetails: [
+      "Image Processor: Prepares uploads for API consumption.",
+      "Vision AI: Gemini Vision Pro endpoint for multimodal analysis.",
+      "UI Layer: Streamlit providing instant visual feedback."
+    ],
+    topologyJson: `
+[Image Upload] -> [Streamlit UI]
+                       |
+             [Image Preprocessor]
+                       |
+             [Gemini Vision Pro]
+                       |
+             (JSON Output Parsing) -> [UI Display]`
   },
   {
     id: "sra",
     title: "SRA Groups System",
     stack: "FastAPI • React (Vite) • React Native (Expo) • Firebase",
     description: "A comprehensive, full-stack management system designed to track employee attendance with GPS geofencing, manage real estate projects, and handle CRM/finance workflows.",
-    githubUrl: "https://github.com/safwanmshereef/real-estate-dashboard",
+    githubUrl: "https://github.com/safwanmshereef/SRA-Groups",
     deliverables: [
       "GPS Geofencing to validate worker location for self-check-ins.",
       "Role-Based Access with specialized dashboards for workers and admins.",
@@ -146,11 +162,19 @@ const projects: Project[] = [
       "CRM & Finance management for brokers, clients, deals, and wage payments."
     ],
     architectureDetails: [
-      "Backend: FastAPI server providing endpoints for authentication, attendance, site management.",
-      "Admin Dashboard: React (Vite) web application for supervisors and reporting.",
-      "Mobile App: React Native (Expo) for worker self-service and QR scanning.",
-      "Secure Audit Trail logging every significant action for security."
-    ]
+      "Mobile Client: React Native/Expo app for workers.",
+      "Web Client: React/Vite dashboard for admins.",
+      "Backend API: FastAPI handling business logic and auth.",
+      "Database: Firebase / Postgres for scalable storage."
+    ],
+    topologyJson: `
+[Mobile App]          [Web Dashboard]
+      \                    /
+       (REST API / WebSocket)
+                 |
+          [FastAPI Server]
+                 |
+           [Database Layer]`
   },
   {
     id: "cfta",
@@ -165,11 +189,70 @@ const projects: Project[] = [
       "Integrated system architecture bridging data collection and advanced analytics."
     ],
     architectureDetails: [
-      "Mobile client built natively in Android Studio for on-the-go data capture.",
-      "Web server backend processing and serving visualizations of the aggregated data.",
-      "Jupyter Notebooks utilized for deeper statistical analysis of datasets.",
-      "Centralized tracking designed to facilitate better environmental monitoring."
-    ]
+      "Mobile Data Entry: Java Android App.",
+      "Central API & Web: PHP backend and JS frontend.",
+      "Analytics Engine: Python / Jupyter Notebooks processing DB dumps."
+    ],
+    topologyJson: `
+[Android App] -> (API) -> [PHP Web Server]
+                                |
+                          [SQL Database]
+                                |
+                        (Data Export CSV)
+                                v
+                     [Jupyter Data Pipeline]`
+  },
+  {
+    id: "fruit",
+    title: "Fruit Veggie Identifier",
+    stack: "Python • OpenCV • TensorFlow",
+    description: "Computer Vision web application leveraging a trained TensorFlow model to identify produce via webcam and estimate calories.",
+    githubUrl: "https://github.com/safwanmshereef/FRUIT_VEGGIE_IDENTIFIER_BASICINFO_AND_CALORIE_ESTIMATOR",
+    deliverables: [
+      "Real-time classification using a trained TensorFlow model.",
+      "Webcam integration via OpenCV mapping live feeds.",
+      "Instant generation of basic nutritional info based on class.",
+      "Streamlit UI providing immediate visual feedback."
+    ],
+    architectureDetails: [
+      "Video Capture: OpenCV mapping local webcam streams.",
+      "Inference Engine: TensorFlow model executing classifications.",
+      "UI State: Streamlit updating classifications per frame."
+    ],
+    topologyJson: `
+[Webcam Stream] -> [OpenCV Frame Capture]
+                            |
+                 [TensorFlow Inference Engine]
+                            |
+                     (Class String ID)
+                            v
+                    [Streamlit Web UI]`
+  },
+  {
+    id: "store",
+    title: "Store Management System",
+    stack: "Next.js • FastAPI • PostgreSQL",
+    description: "Role-based operations platform developed during internship. Orchestrates daily stock verification and Zoho/GoFrugal integrations.",
+    githubUrl: "https://github.com/safwanmshereef/store-application",
+    deliverables: [
+      "Role-based OTP authentication for Admin/Manager flows.",
+      "Daily stock verification logic with mismatch flagging.",
+      "Integration layer synchronizing Zoho and GoFrugal data.",
+      "Modern Next.js 14 App Router frontend implementation."
+    ],
+    architectureDetails: [
+      "Frontend: Next.js App Router for dynamic rendering.",
+      "Backend: FastAPI serving secure endpoints.",
+      "Database: PostgreSQL handling relational stock data."
+    ],
+    topologyJson: `
+[Next.js App] <-> (FastAPI Secure Endpoints)
+                             |
+                     [PostgreSQL DB]
+                             |
+              (Data Sync Background Workers)
+              /                            \
+        [Zoho API]                  [GoFrugal API]`
   }
 ];
 

@@ -111,8 +111,8 @@ export default function AnimeMiniGame() {
       {/* Dynamic Background Parallax */}
       <div className="absolute inset-0 overflow-hidden opacity-60">
          <div className={`absolute bottom-0 w-[200%] h-full flex ${isPlaying && !gameOver ? 'animate-[slide_10s_linear_infinite]' : ''}`}>
-             <div className="w-1/2 h-full bg-[url('https://wallpapers.com/images/hd/hidden-leaf-village-1920-x-1080-wallpaper-xixl35p6305a4wta.jpg')] bg-cover bg-center" />
-             <div className="w-1/2 h-full bg-[url('https://wallpapers.com/images/hd/hidden-leaf-village-1920-x-1080-wallpaper-xixl35p6305a4wta.jpg')] bg-cover bg-center" />
+             <div className="w-1/2 h-full bg-[#1e293b] flex items-center justify-center opacity-30"><div className="w-full h-full border-[20px] border-[#334155] border-dashed rounded-[100px] transform scale-150" /></div>
+             <div className="w-1/2 h-full bg-[#1e293b] flex items-center justify-center opacity-30"><div className="w-full h-full border-[20px] border-[#334155] border-dashed rounded-[100px] transform scale-150" /></div>
          </div>
          {/* Overlay to ensure text readability */}
          <div className="absolute inset-0 bg-black/40" />
@@ -188,7 +188,7 @@ export default function AnimeMiniGame() {
         }}
       >
         <img
-            src="https://media.tenor.com/FwBfN6-zNKEAAAAj/naruto-run.gif"
+            src="/assets/anime/naruto.gif"
             alt="Naruto Runner"
             className={`w-full h-full object-contain filter drop-shadow-[0_0_8px_#f97316] ${isPlaying && !gameOver ? '' : 'grayscale opacity-50'}`}
             style={{ transform: isJumping ? 'rotate(-10deg)' : 'rotate(0)' }}
