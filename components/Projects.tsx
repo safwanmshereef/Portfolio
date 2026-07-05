@@ -32,7 +32,7 @@ const projects: Project[] = [
     ],
     architectureDetails: [
       "Engineered a robust Multi-File processing pipeline utilizing LangChain, FAISS Vector Indexing, and HuggingFace all-MiniLM-L6-v2 embeddings.",
-      "Implemented a \'Context Inspector\' allowing users to view raw similarity scores and retrieved chunks, bringing observability to AI reasoning."
+      "Implemented a 'Context Inspector' allowing users to view raw similarity scores and retrieved chunks, bringing observability to AI reasoning."
     ],
     topologyJson: `// Pipeline_Topology.json
 
@@ -120,163 +120,56 @@ const projects: Project[] = [
     description: "Production-grade, context-aware AI assistant built with Google's native Gemini SDK featuring sliding-window token optimization.",
     githubUrl: "https://github.com/safwanmshereef/ZenturioChatbot",
     demoUrl: "https://zenturiotechchatbot.streamlit.app",
-    iframeSupport: true,
     deliverables: [
-      "Context-Aware multi-turn conversation memory.",
-      "Sliding-Window Token Optimizer utilizing tiktoken.",
-      "Strict Anti-Hallucination rules via system prompts.",
-      "Auto Model Detection Engine connecting to highest capable model available."
+      "Context-Aware Responses maintaining full conversation history.",
+      "Sliding-Window Token Optimizer to accurately track BPE tokens.",
+      "Anti-Hallucination & Zero-Repetition system prompt.",
+      "Auto Model Detection Engine prioritizing newest capable models."
     ],
     architectureDetails: [
-      "State-persisted multi-chat management with SQLite3.",
-      "Real-Time Analytics Dashboard for token and API call tracking.",
-      "Dynamic prompt engineering preserving system directives on context overflow.",
-      "Glassmorphism UI styling built natively in Streamlit."
-    ],
-    topologyJson: `// Pipeline_Topology.json
-[User Message]
-   |
-[Token Analyzer] -> (Truncate if overflow)
-   |
-[System Prompt Context]
-   |
-[Gemini LLM Engine] <-> [SQLite DB]
-   |
-[Streamlit Render]`
-  },
-  {
-    id: "nutriscan",
-    title: "NutriScan AI",
-    stack: "Python • Streamlit • Google Gemini Vision",
-    description: "Smart health companion. Uses Gemini Vision Pro to scan food photos, instantly detect calories, and act as an AI chef.",
-    githubUrl: "https://github.com/safwanmshereef/nutriscan-ai",
-    deliverables: [
-      "Instant Calorie & Macro Detection from food images.",
-      "Dynamic AI Chef generating custom diet-aware recipes.",
-      "Health Risk Highlighting for scanned ingredients.",
-      "Personalized intake tracking based on dietary goals."
-    ],
-    architectureDetails: [
-      "Gemini Vision API mapping image features to nutritional matrices.",
-      "Streamlit based UI for cross-platform accessibility.",
-      "Integration of real-time prompt structuring for dietary constraints.",
-      "Interactive data display mapping macro distribution."
-    ],
-    topologyJson: `// Pipeline_Topology.json
-{
-  "Input": ["Food_Photo", "Dietary_Goals"],
-  "Vision_Engine": "Gemini Pro Vision",
-  "Analysis": {
-     "Macros": "Cal/Pro/Carb/Fat",
-     "Risks": "Allergens"
-  },
-  "Output_Generator": "Custom Recipe & Insight UI"
-}`
+      "Data Persistence & Multi-Chat Management using SQLite database.",
+      "Real-Time Analytics Dashboard tracking session tokens and API calls.",
+      "Tokenization handled efficiently by Tiktoken (cl100k_base).",
+      "Dynamic context management gracefully truncating older messages."
+    ]
   },
   {
     id: "sra",
-    title: "SRA Groups",
-    stack: "FastAPI • React • React Native",
-    description: "Comprehensive management system for real estate. Includes a backend API, Web Dashboard, and a Mobile App for worker self-check-ins.",
-    githubUrl: "https://github.com/safwanmshereef/SRA-Groups",
+    title: "SRA Groups System",
+    stack: "FastAPI • React (Vite) • React Native (Expo) • Firebase",
+    description: "A comprehensive, full-stack management system designed to track employee attendance with GPS geofencing, manage real estate projects, and handle CRM/finance workflows.",
+    githubUrl: "https://github.com/safwanmshereef/real-estate-dashboard",
     deliverables: [
-      "Backend API handling distributed system coordination.",
-      "Admin Web Dashboard for comprehensive oversight.",
-      "Mobile App enabling worker self-check-ins via GPS.",
-      "Supervisor QR verification for strict on-site authentication."
+      "GPS Geofencing to validate worker location for self-check-ins.",
+      "Role-Based Access with specialized dashboards for workers and admins.",
+      "Live attendance monitoring with verification photo capture.",
+      "CRM & Finance management for brokers, clients, deals, and wage payments."
     ],
     architectureDetails: [
-      "FastAPI orchestrating high-concurrency requests.",
-      "React (Vite) frontend for performant admin management.",
-      "React Native (Expo) mobile interface utilizing native device sensors.",
-      "Strict geofencing implemented in backend spatial logic."
-    ],
-    topologyJson: `// Pipeline_Topology.json
-[Mobile Client (GPS/QR)] -> [API Gateway]
-                               |
-[Web Admin (React)] -------> [Core Logic]
-                               |
-                        [Database Layer]`
+      "Backend: FastAPI server providing endpoints for authentication, attendance, site management.",
+      "Admin Dashboard: React (Vite) web application for supervisors and reporting.",
+      "Mobile App: React Native (Expo) for worker self-service and QR scanning.",
+      "Secure Audit Trail logging every significant action for security."
+    ]
   },
   {
     id: "cfta",
-    title: "CFTA",
-    stack: "Java • PHP • SCSS • Python",
-    description: "Multi-platform project analyzing CO₂ emissions. Features a Java-based mobile app for tracking and a PHP web interface for deep data analysis.",
+    title: "CFTA CO2 Analytics",
+    stack: "Java • PHP • JS • Python • Jupyter",
+    description: "A comprehensive project focused on tracking, managing, and analyzing CO2 emissions across mobile applications, web interfaces, and Jupyter Notebook data pipelines.",
     githubUrl: "https://github.com/safwanmshereef/CFTA",
     deliverables: [
-      "Java-based Android application for mobile CO2 emission tracking.",
-      "PHP/Blade web interface serving as a comprehensive data portal.",
-      "Jupyter Notebook Python analyses mapped to visual endpoints.",
-      "Integration of SCSS for responsive dashboard components."
+      "Mobile App (Java) for real-time tracking and inputting of CO2 emission data.",
+      "Web Dashboard (PHP/Blade/JS) for comprehensive data visualization and management.",
+      "Data Analysis pipelines (Python/Jupyter) for exploring and identifying emission trends.",
+      "Integrated system architecture bridging data collection and advanced analytics."
     ],
     architectureDetails: [
-      "Mobile client structured for low-latency offline logging.",
-      "Backend API synchronization mapping local data to cloud.",
-      "Python data pipelines analyzing massive environmental datasets.",
-      "Modular PHP components structuring dynamic views."
-    ],
-    topologyJson: `// Pipeline_Topology.json
-{
-  "Data_Collection": "Java Android App",
-  "Data_Analysis": "Python (Jupyter/Pandas)",
-  "Web_Presentation": "PHP/Blade Framework",
-  "Styling": "SCSS Preprocessor"
-}`
-  },
-  {
-    id: "fruit_veggie",
-    title: "Fruit Veggie Identifier",
-    stack: "Python • OpenCV • TensorFlow",
-    description: "Computer Vision web application leveraging a trained TensorFlow model to identify produce via webcam and estimate calories.",
-    githubUrl: "https://github.com/safwanmshereef/FRUIT_VEGGIE_IDENTIFIER_BASICINFO_AND_CALORIE_ESTIMATOR",
-    deliverables: [
-      "Real-time classification using a trained TensorFlow model.",
-      "Webcam integration via OpenCV mapping live feeds.",
-      "Instant generation of basic nutritional info based on class.",
-      "Streamlit UI providing immediate visual feedback."
-    ],
-    architectureDetails: [
-      "TensorFlow model (trained_model.h5) serving inference.",
-      "Image preprocessing pipeline normalizing webcam frames.",
-      "Dictionary-based mapping of prediction labels to calorie tables.",
-      "Optimized inference loop for lag-free Streamlit experience."
-    ],
-    topologyJson: `// Pipeline_Topology.json
-[Webcam Feed] -> [OpenCV Preprocess]
-                      |
-              [TF Inference Model]
-                      |
-[Calorie Dict] <- [Class Label]
-                      |
-             [Streamlit Display]`
-  },
-  {
-    id: "store_app",
-    title: "Store Management System",
-    stack: "Next.js • FastAPI • PostgreSQL",
-    description: "Role-based operations platform developed during internship. Orchestrates daily stock verification and Zoho/GoFrugal integrations.",
-    githubUrl: "https://github.com/safwanmshereef/store-application",
-    deliverables: [
-      "Role-based OTP authentication for Admin/Manager flows.",
-      "Daily stock verification logic with mismatch flagging.",
-      "Integration layer synchronizing Zoho and GoFrugal data.",
-      "Modern Next.js 14 App Router frontend implementation."
-    ],
-    architectureDetails: [
-      "FastAPI backend resolving carryover mismatches algorithmically.",
-      "PostgreSQL database structuring relational inventory schemas.",
-      "Tailwind CSS styling mapping responsive internal tool UI.",
-      "Secure API routes handling sensitive external CRM syncing."
-    ],
-    topologyJson: `// Pipeline_Topology.json
-{
-  "Frontend": "Next.js (App Router)",
-  "Auth": "OTP Verification Node",
-  "Backend": "FastAPI Core",
-  "Integrations": ["Zoho API", "GoFrugal API"],
-  "Data": "PostgreSQL (Relational Inventory)"
-}`
+      "Mobile client built natively in Android Studio for on-the-go data capture.",
+      "Web server backend processing and serving visualizations of the aggregated data.",
+      "Jupyter Notebooks utilized for deeper statistical analysis of datasets.",
+      "Centralized tracking designed to facilitate better environmental monitoring."
+    ]
   }
 ];
 

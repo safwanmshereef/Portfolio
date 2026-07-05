@@ -5,37 +5,35 @@ def run_cuj(page):
     page.wait_for_timeout(2000)
 
     # 1. Take screenshot of hero (check profile picture & animations)
-    page.screenshot(path="/home/jules/verification/screenshots/hero_updated.png")
+    page.screenshot(path="test-results/hero_updated.png")
     page.wait_for_timeout(1000)
 
     # 2. Scroll to Projects and click on Finance Dashboard
     page.evaluate("window.scrollTo(0, document.body.scrollHeight / 3)")
     page.wait_for_timeout(1000)
 
-    # Click on Finance Dashboard project card
-    page.locator("text=Finance Dashboard").click()
+    # Click on Finance-Dashboard project card
+    page.locator("text=Finance-Dashboard").click()
     page.wait_for_timeout(1000)
 
-    page.screenshot(path="/home/jules/verification/screenshots/finance_project.png")
+    page.screenshot(path="test-results/finance_project.png")
     page.wait_for_timeout(1000)
 
     # Close modal (using more specific selector)
     page.locator("button", has=page.locator("svg.lucide-x")).click()
     page.wait_for_timeout(1000)
 
-    # Click on STORE APP (Internship) project card
-    page.locator("text=STORE APP (Internship)").click()
+    # Check if F1 game is rendered
+    page.evaluate("window.scrollTo(0, document.body.scrollHeight)")
     page.wait_for_timeout(1000)
-
-    page.screenshot(path="/home/jules/verification/screenshots/store_app_project.png")
-    page.wait_for_timeout(1000)
+    page.screenshot(path="test-results/f1_game.png")
 
 
 if __name__ == "__main__":
     with sync_playwright() as p:
         browser = p.chromium.launch(headless=True)
         context = browser.new_context(
-            record_video_dir="/home/jules/verification/videos",
+            record_video_dir="test-results/videos",
             viewport={'width': 1280, 'height': 720}
         )
         page = context.new_page()

@@ -68,7 +68,7 @@ export default function F1MiniGame() {
   }, [isPlaying, gameOver, carLane]);
 
   return (
-    <div className="w-full max-w-2xl mx-auto my-32 relative border-8 border-ferrari rounded-lg overflow-hidden h-[600px] bg-[#1a1a1a] shadow-[0_0_50px_rgba(225,6,0,0.4)] interactive">
+    <div className="w-full max-w-2xl mx-auto my-32 relative border-8 border-ferrari rounded-lg overflow-hidden h-[600px] bg-[#111] shadow-[0_0_100px_rgba(225,6,0,0.8)] interactive ring-4 ring-radiant-gold transform hover:scale-[1.02] transition-transform duration-300">
       {/* Title above game to make it super noticeable */}
       <div className="absolute top-0 left-1/2 -translate-x-1/2 -translate-y-full pb-4 text-center w-full z-30 pointer-events-none">
          <h2 className="text-4xl md:text-5xl font-display font-bold text-transparent bg-clip-text bg-gradient-to-r from-ferrari via-radiant-gold to-ferrari animate-pulse drop-shadow-[0_0_10px_rgba(225,6,0,0.8)] uppercase tracking-widest">
@@ -134,29 +134,9 @@ export default function F1MiniGame() {
         className="absolute bottom-6 w-1/3 flex justify-center transition-all duration-150 ease-out z-10"
         style={{ left: `${carLane * 33.33}%` }}
       >
-        {/* Improved F1 Car Representation */}
-        <div className="relative w-16 h-28 flex flex-col items-center">
-           {/* Front Wing */}
-           <div className="w-14 h-3 bg-black rounded-sm border-b-2 border-ferrari shadow-[0_0_10px_#e10600]" />
-           {/* Nose */}
-           <div className="w-4 h-8 bg-ferrari" />
-           {/* Cockpit & Halo */}
-           <div className="w-8 h-10 bg-ferrari rounded-t-full relative flex justify-center border-x-2 border-white">
-              <div className="absolute top-2 w-4 h-4 bg-black rounded-full" /> {/* Driver Helmet */}
-              <div className="absolute top-1 w-6 h-6 border border-gray-400 rounded-t-full rounded-b-none pointer-events-none" /> {/* Halo */}
-           </div>
-           {/* Sidepods */}
-           <div className="absolute top-[40px] w-14 h-10 flex justify-between">
-              <div className="w-3 h-full bg-red-800 rounded-l" />
-              <div className="w-3 h-full bg-red-800 rounded-r" />
-           </div>
-           {/* Wheels */}
-           <div className="absolute top-2 -left-1 w-2 h-6 bg-black rounded-sm" />
-           <div className="absolute top-2 -right-1 w-2 h-6 bg-black rounded-sm" />
-           <div className="absolute bottom-2 -left-1 w-3 h-8 bg-black rounded-sm" />
-           <div className="absolute bottom-2 -right-1 w-3 h-8 bg-black rounded-sm" />
-           {/* Rear Wing */}
-           <div className="w-12 h-4 bg-black rounded-sm mt-auto border-t border-ferrari" />
+        {/* Real F1 Car Representation */}
+        <div className="relative w-24 h-40 flex flex-col items-center justify-center filter drop-shadow-[0_0_15px_rgba(225,6,0,0.8)]">
+           <img src="https://clipart-library.com/images_k/f1-car-transparent/f1-car-transparent-13.png" alt="F1 Car" className="w-full h-full object-contain -rotate-90" />
         </div>
       </div>
     </div>
