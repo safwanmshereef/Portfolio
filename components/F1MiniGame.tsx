@@ -68,20 +68,30 @@ export default function F1MiniGame() {
   }, [isPlaying, gameOver, carLane]);
 
   return (
-    <div className="w-full max-w-md mx-auto mt-8 relative border-4 border-ferrari rounded-lg overflow-hidden h-[400px] bg-slate">
-      {/* Background Track */}
-      <div className="absolute inset-0 flex justify-evenly opacity-20">
-        <div className="w-1 bg-white h-full" style={{ backgroundImage: 'var(--race-stripes)' }} />
-        <div className="w-1 bg-white h-full" style={{ backgroundImage: 'var(--race-stripes)' }} />
+    <div className="w-full max-w-2xl mx-auto my-32 relative border-8 border-ferrari rounded-lg overflow-hidden h-[600px] bg-[#111] shadow-[0_0_100px_rgba(225,6,0,0.8)] interactive ring-4 ring-radiant-gold transform hover:scale-[1.02] transition-transform duration-300">
+      {/* Title above game to make it super noticeable */}
+      <div className="absolute top-0 left-1/2 -translate-x-1/2 -translate-y-full pb-4 text-center w-full z-30 pointer-events-none">
+         <h2 className="text-4xl md:text-5xl font-display font-bold text-transparent bg-clip-text bg-gradient-to-r from-ferrari via-radiant-gold to-ferrari animate-pulse drop-shadow-[0_0_10px_rgba(225,6,0,0.8)] uppercase tracking-widest">
+            F1 Reflex Challenge
+         </h2>
+      </div>
+      {/* Background Track with Animation */}
+      <div className={`absolute inset-0 flex justify-evenly opacity-30 ${isPlaying && !gameOver ? 'animate-[pulse_0.1s_ease-in-out_infinite]' : ''}`}>
+        <div className="w-2 bg-white h-full border-x border-gray-400 border-dashed" />
+        <div className="w-2 bg-white h-full border-x border-gray-400 border-dashed" />
       </div>
 
+      {/* Track edges */}
+      <div className="absolute left-0 top-0 bottom-0 w-4 bg-[repeating-linear-gradient(45deg,#ff0000,#ff0000_10px,#ffffff_10px,#ffffff_20px)]" />
+      <div className="absolute right-0 top-0 bottom-0 w-4 bg-[repeating-linear-gradient(45deg,#ff0000,#ff0000_10px,#ffffff_10px,#ffffff_20px)]" />
+
       {!isPlaying && !gameOver && (
-        <div className="absolute inset-0 flex flex-col items-center justify-center bg-ink/80 z-20">
-          <Flag size={48} className="text-ferrari mb-4" />
-          <h3 className="font-display font-bold text-xl uppercase mb-2">Grand Prix Override</h3>
-          <p className="font-mono text-xs text-cream/70 mb-6 text-center px-8">Use Left/Right arrows to dodge barriers.<br/>Drive like Senna.</p>
-          <button onClick={startGame} className="flex items-center space-x-2 bg-ferrari text-white px-6 py-3 font-bold uppercase tracking-wider interactive hover:bg-ferrari/80">
-            <Play size={16} /> <span>Start Engine</span>
+        <div className="absolute inset-0 flex flex-col items-center justify-center bg-ink/90 z-20 backdrop-blur-sm">
+          <Flag size={64} className="text-ferrari mb-4" />
+          <h3 className="font-display font-bold text-3xl uppercase mb-2 text-white shadow-glow">F1 Grand Prix Module</h3>
+          <p className="font-mono text-sm text-cream mb-8 text-center px-8">Use <span className="text-radiant-gold">Left/Right</span> arrows to dodge barriers.<br/>Drive like Hamilton, Verstappen, or Senna.</p>
+          <button onClick={startGame} className="flex items-center space-x-2 bg-ferrari text-white px-8 py-4 font-bold uppercase tracking-wider interactive hover:bg-red-700 transition-colors shadow-[0_0_20px_rgba(225,6,0,0.5)]">
+            <Play size={20} /> <span>Start Engine</span>
           </button>
         </div>
       )}
@@ -115,21 +125,18 @@ export default function F1MiniGame() {
             transform: 'translateY(-50%)'
           }}
         >
-          <div className="w-12 h-4 bg-sunset-orange border-2 border-ink shadow-glow rounded-sm" />
+          <div className="w-16 h-8 bg-[repeating-linear-gradient(45deg,#000000,#000000_10px,#ffcc00_10px,#ffcc00_20px)] border border-white shadow-[0_0_15px_rgba(255,204,0,0.5)] rounded-sm flex items-center justify-center"><span className="text-[8px] font-bold text-white bg-black/50 px-1">BARRIER</span></div>
         </div>
       ))}
 
       {/* Car */}
       <div
-        className="absolute bottom-4 w-1/3 flex justify-center transition-all duration-100 ease-out z-10"
+        className="absolute bottom-6 w-1/3 flex justify-center transition-all duration-150 ease-out z-10"
         style={{ left: `${carLane * 33.33}%` }}
       >
-        <div className="w-10 h-16 bg-ferrari rounded-t-xl rounded-b-sm border-2 border-white relative shadow-[0_0_15px_#e10600]">
-           {/* Simple F1 car representation */}
-           <div className="absolute top-2 left-1/2 -translate-x-1/2 w-4 h-4 bg-ink rounded-full" />
-           <div className="absolute -left-2 top-4 w-2 h-6 bg-ink rounded" />
-           <div className="absolute -right-2 top-4 w-2 h-6 bg-ink rounded" />
-           <div className="absolute bottom-0 w-full h-2 bg-black" />
+        {/* Real F1 Car Representation */}
+        <div className="relative w-24 h-40 flex flex-col items-center justify-center filter drop-shadow-[0_0_15px_rgba(225,6,0,0.8)]">
+           <svg viewBox="0 0 100 200" className="w-full h-full"><path d="M40 20 L60 20 L70 50 L80 120 L70 160 L60 180 L40 180 L30 160 L20 120 L30 50 Z" fill="#E32636"/><path d="M45 40 L55 40 L55 70 L45 70 Z" fill="#000000"/><path d="M35 130 L65 130 L65 150 L35 150 Z" fill="#000000"/><path d="M25 60 L35 60 L35 100 L25 100 Z" fill="#111111"/><path d="M65 60 L75 60 L75 100 L65 100 Z" fill="#111111"/><path d="M25 140 L35 140 L35 170 L25 170 Z" fill="#111111"/><path d="M65 140 L75 140 L75 170 L65 170 Z" fill="#111111"/></svg>
         </div>
       </div>
     </div>

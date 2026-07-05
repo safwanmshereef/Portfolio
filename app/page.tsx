@@ -1,71 +1,41 @@
 "use client";
 
-import { useEffect, useState, useRef } from "react";
-import { motion, AnimatePresence } from "framer-motion";
 import Hero from "@/components/Hero";
 import SkillTree from "@/components/SkillTree";
+import Experience from "@/components/Experience";
 import Projects from "@/components/Projects";
+import F1MiniGame from "@/components/F1MiniGame";
+import AnimeMiniGame from "@/components/AnimeMiniGame";
 import Lifestyle from "@/components/Lifestyle";
-import { Trophy } from "lucide-react";
 
 export default function Home() {
-  const [achievementUnlocked, setAchievementUnlocked] = useState(false);
-  const bottomRef = useRef<HTMLDivElement>(null);
-
-  useEffect(() => {
-    const observer = new IntersectionObserver(
-      ([entry]) => {
-        if (entry.isIntersecting && !achievementUnlocked) {
-          setAchievementUnlocked(true);
-          // Optional: Auto-hide after 5 seconds
-          setTimeout(() => setAchievementUnlocked(false), 5000);
-        }
-      },
-      { threshold: 0.1 }
-    );
-
-    if (bottomRef.current) {
-      observer.observe(bottomRef.current);
-    }
-
-    return () => observer.disconnect();
-  }, [achievementUnlocked]);
-
   return (
     <main className="relative w-full overflow-hidden">
       <Hero />
       <SkillTree />
+      <Experience />
       <Projects />
-      <Lifestyle />
 
-      {/* Hidden trigger div for the achievement */}
-      <div ref={bottomRef} className="h-4 w-full bg-transparent" />
+      {/* Interactive Arcade Section */}
+      <section className="py-24 px-8 lg:px-24 relative border-t border-slate/30 bg-gradient-to-b from-ink to-[#0f141c]">
+        <div className="mb-16 text-center">
+          <h2 className="text-4xl font-display font-bold uppercase tracking-widest text-transparent bg-clip-text bg-gradient-to-r from-radiant-gold to-sunset-orange">
+            The Arcade
+          </h2>
+          <p className="font-mono text-cream/50 mt-2">Interactive testing modules.</p>
+        </div>
+
+        <AnimeMiniGame />
+        <F1MiniGame />
+      </section>
+
+      <Lifestyle />
 
       {/* Footer */}
       <footer className="py-8 text-center border-t border-slate font-mono text-xs text-cream/40">
         <p>Built by Safwan Shereef. Framework: Next.js App Router & Tailwind CSS.</p>
         <p>Deployment: Vercel Free Tier. AI Spaces: Hugging Face.</p>
       </footer>
-
-      {/* Achievement Popup */}
-      <AnimatePresence>
-        {achievementUnlocked && (
-          <motion.div
-            initial={{ opacity: 0, y: 50, scale: 0.9 }}
-            animate={{ opacity: 1, y: 0, scale: 1 }}
-            exit={{ opacity: 0, y: 50, scale: 0.9 }}
-            className="fixed bottom-8 left-1/2 -translate-x-1/2 z-50 manga-panel p-4 flex items-center space-x-4 border-radiant-gold shadow-[0_0_20px_rgba(254,228,64,0.3)] bg-ink/95"
-          >
-            <div className="bg-radiant-gold/20 p-2 rounded">
-              <Trophy className="text-radiant-gold" size={24} />
-            </div>
-            <div>
-              <p className="font-display font-bold text-radiant-gold uppercase tracking-wider text-sm">Achievement Unlocked!</p>
-              <p className="font-mono text-xs text-cream/80">Master Automator</p>
-            </div>
-          </motion.div>
-        )}
-      </AnimatePresence>
     </main>
   );
 }

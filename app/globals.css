@@ -4,6 +4,8 @@
 
 :root {
   color-scheme: dark;
+  --theme-color: #ff5a5f;
+  --theme-gradient: from-[#ff5a5f]/20 to-transparent;
 }
 
 * {
@@ -44,4 +46,22 @@ body::before {
   border: 2px solid #1a1f2e;
   background-color: rgba(15, 20, 28, 0.8);
   backdrop-filter: blur(8px);
+}
+
+/* Custom Scrollbar for Project Modal */
+.custom-scrollbar::-webkit-scrollbar {
+  width: 8px;
+}
+
+.custom-scrollbar::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.custom-scrollbar::-webkit-scrollbar-thumb {
+  background-color: #334155;
+  border-radius: 4px;
+}
+
+.custom-scrollbar::-webkit-scrollbar-thumb:hover {
+  background-color: #475569;
 }
