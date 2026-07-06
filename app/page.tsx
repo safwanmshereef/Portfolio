@@ -34,7 +34,6 @@ export default function Home() {
       {/* Footer */}
       <footer className="py-8 text-center border-t border-slate font-mono text-xs text-cream/40">
         <p>Built by Safwan Shereef. Framework: Next.js App Router & Tailwind CSS.</p>
-        <p>Deployment: Vercel Free Tier. AI Spaces: Hugging Face.</p>
       </footer>
     </main>
   );

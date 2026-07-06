@@ -5,7 +5,7 @@ import { motion } from "framer-motion";
 import { Server, Database, Container, Brain, LayoutGrid, Terminal } from "lucide-react";
 
 const skillNodes = [
-  { id: "backend", label: "Backend Core", icon: Server, skills: ["Python", "FastAPI", "Node.js", "REST APIs", "C", "C++"] },
+  { id: "backend", label: "Backend Core", icon: Server, skills: ["Python", "FastAPI", "Node.js", "REST APIs", "C", "C++", "SQLAlchemy (ORM)"] },
   { id: "ai", label: "AI Orchestration", icon: Brain, skills: ["LangChain", "RAG Pipelines", "FAISS (Vector Indexing)", "Agentic Tool Calling", "TensorFlow", "OpenCV", "Prompt Tuning"] },
   { id: "ai-devtools", label: "AI Orchestration & Dev Tools", icon: Terminal, skills: [
     "Cursor / VS Code",
@@ -18,7 +18,7 @@ const skillNodes = [
     "Google Stitch",
     "Android Studio"
   ] },
-  { id: "data", label: "Data Eng", icon: Database, skills: ["Advanced SQL", "PostgreSQL Schema Optimization", "Pandas"] },
+  { id: "data", label: "Data Eng", icon: Database, skills: ["Advanced SQL", "PostgreSQL Schema Optimization", "Pandas", "RDBMS (PostgreSQL)"] },
   { id: "infra", label: "DevOps & Infrastructure", icon: Container, skills: ["Docker Containerization", "Cloud Compute Clusters", "Linux Systems Management", "Git/GitHub Version Control", "Firebase (Auth / Firestore / Data Connect)"] },
   { id: "frontend", label: "Frontend & Mobile", icon: LayoutGrid, skills: ["React", "Next.js", "React Native", "Tailwind CSS", "Framer Motion"] },
 ];

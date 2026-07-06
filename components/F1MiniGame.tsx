@@ -136,7 +136,41 @@ export default function F1MiniGame() {
       >
         {/* Real F1 Car Representation */}
         <div className="relative w-24 h-40 flex flex-col items-center justify-center filter drop-shadow-[0_0_15px_rgba(225,6,0,0.8)]">
-           <svg viewBox="0 0 100 200" className="w-full h-full"><path d="M40 20 L60 20 L70 50 L80 120 L70 160 L60 180 L40 180 L30 160 L20 120 L30 50 Z" fill="#E32636"/><path d="M45 40 L55 40 L55 70 L45 70 Z" fill="#000000"/><path d="M35 130 L65 130 L65 150 L35 150 Z" fill="#000000"/><path d="M25 60 L35 60 L35 100 L25 100 Z" fill="#111111"/><path d="M65 60 L75 60 L75 100 L65 100 Z" fill="#111111"/><path d="M25 140 L35 140 L35 170 L25 170 Z" fill="#111111"/><path d="M65 140 L75 140 L75 170 L65 170 Z" fill="#111111"/></svg>
+           <svg viewBox="0 0 100 200" className="w-full h-full">
+             {/* Front Wing */}
+             <path d="M10 30 L90 30 L85 45 L15 45 Z" fill="#E32636" stroke="#111" strokeWidth="2"/>
+             <path d="M20 25 L80 25 L80 30 L20 30 Z" fill="#111"/>
+
+             {/* Nose/Chassis */}
+             <path d="M45 45 L55 45 L65 110 L35 110 Z" fill="#E32636"/>
+
+             {/* Front Wheels */}
+             <rect x="5" y="35" width="15" height="40" rx="3" fill="#111"/>
+             <rect x="80" y="35" width="15" height="40" rx="3" fill="#111"/>
+             <line x1="20" y1="55" x2="40" y2="65" stroke="#333" strokeWidth="3"/>
+             <line x1="80" y1="55" x2="60" y2="65" stroke="#333" strokeWidth="3"/>
+
+             {/* Sidepods */}
+             <path d="M25 100 L75 100 L80 150 L20 150 Z" fill="#E32636"/>
+             <path d="M28 105 L35 105 L35 140 L28 140 Z" fill="#111"/>
+             <path d="M72 105 L65 105 L65 140 L72 140 Z" fill="#111"/>
+
+             {/* Halo & Cockpit */}
+             <ellipse cx="50" cy="115" rx="8" ry="12" fill="#000"/>
+             <path d="M40 110 L60 110 L50 95 Z" fill="none" stroke="#222" strokeWidth="3"/>
+
+             {/* Rear Wheels */}
+             <rect x="5" y="140" width="18" height="45" rx="3" fill="#111"/>
+             <rect x="77" y="140" width="18" height="45" rx="3" fill="#111"/>
+
+             {/* Rear Wing */}
+             <path d="M25 180 L75 180 L75 195 L25 195 Z" fill="#E32636" stroke="#111" strokeWidth="2"/>
+             <path d="M30 175 L70 175 L70 180 L30 180 Z" fill="#111"/>
+
+             {/* Details (T-cam, sponsors) */}
+             <rect x="48" y="80" width="4" height="10" fill="#FFFF00"/>
+             <circle cx="50" cy="130" r="3" fill="#FFFF00"/>
+           </svg>
         </div>
       </div>
     </div>

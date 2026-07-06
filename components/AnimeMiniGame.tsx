@@ -109,10 +109,10 @@ export default function AnimeMiniGame() {
       </div>
 
       {/* Dynamic Background Parallax */}
-      <div className="absolute inset-0 overflow-hidden opacity-60">
+      <div className="absolute inset-0 overflow-hidden opacity-80">
          <div className={`absolute bottom-0 w-[200%] h-full flex ${isPlaying && !gameOver ? 'animate-[slide_10s_linear_infinite]' : ''}`}>
-             <div className="w-1/2 h-full bg-[#1e293b] flex items-center justify-center opacity-30"><div className="w-full h-full border-[20px] border-[#334155] border-dashed rounded-[100px] transform scale-150" /></div>
-             <div className="w-1/2 h-full bg-[#1e293b] flex items-center justify-center opacity-30"><div className="w-full h-full border-[20px] border-[#334155] border-dashed rounded-[100px] transform scale-150" /></div>
+             <div className="w-1/2 h-full flex items-center justify-center opacity-80" style={{ backgroundImage: "url('/assets/anime/konoha.jpg')", backgroundSize: 'cover', backgroundPosition: 'bottom' }}></div>
+             <div className="w-1/2 h-full flex items-center justify-center opacity-80" style={{ backgroundImage: "url('/assets/anime/konoha.jpg')", backgroundSize: 'cover', backgroundPosition: 'bottom' }}></div>
          </div>
          {/* Overlay to ensure text readability */}
          <div className="absolute inset-0 bg-black/40" />
@@ -198,6 +198,7 @@ export default function AnimeMiniGame() {
       <style dangerouslySetInnerHTML={{__html: `
         @keyframes slide {
           from { transform: translateX(0); }
+          to { transform: translateX(-50%); }
           to { transform: translateX(-50%); }
         }
       `}} />

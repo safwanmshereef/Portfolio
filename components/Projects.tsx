@@ -291,7 +291,6 @@ export default function Projects() {
 
             <div className="mt-auto pt-4 border-t border-slate/50 flex items-center justify-between text-xs font-mono uppercase text-cream/40">
               <span>View Data Logs</span>
-              {project.iframeSupport && <span className="text-radiant-gold flex items-center"><PlaySquare size={14} className="mr-1"/> Live Demo</span>}
             </div>
           </motion.div>
         ))}
@@ -437,21 +436,6 @@ export default function Projects() {
                  </div>
               </div>
 
-              {/* Iframe Support (If applicable) */}
-              {activeProject.iframeSupport && activeProject.demoUrl && (
-                <div className="w-full h-[500px] border-t border-slate relative group overflow-hidden shrink-0 mt-4">
-                   <div className="absolute top-0 left-0 w-full p-2 bg-[#0d1117] font-mono text-[10px] uppercase text-cream/50 flex justify-between z-10 pointer-events-none border-b border-slate/30">
-                      <span>Streamlit Sandbox Uplink</span>
-                      <span className="text-neon-teal blink">Online</span>
-                   </div>
-                   <iframe
-                     src={activeProject.demoUrl}
-                     title={`${activeProject.title} Demo`}
-                     className="w-full h-full border-none pt-8 bg-[#0d1117]"
-                     sandbox="allow-scripts allow-same-origin allow-forms allow-popups"
-                   />
-                </div>
-              )}
             </motion.div>
           </div>
         )}
