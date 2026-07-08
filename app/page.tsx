@@ -17,7 +17,7 @@ export default function Home() {
       <Projects />
 
       {/* Interactive Arcade Section */}
-      <section className="py-24 px-8 lg:px-24 relative border-t border-slate/30 bg-gradient-to-b from-ink to-[#0f141c]">
+      <section className="py-24 px-4 md:px-8 lg:px-24 relative border-t border-slate/30 bg-gradient-to-b from-ink to-[#0f141c]">
         <div className="mb-16 text-center">
           <h2 className="text-4xl font-display font-bold uppercase tracking-widest text-transparent bg-clip-text bg-gradient-to-r from-radiant-gold to-sunset-orange">
             The Arcade

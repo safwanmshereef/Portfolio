@@ -28,11 +28,12 @@ export default function AnimeMiniGame() {
     setIsJumping(true);
     setTimeout(() => {
       setIsJumping(false);
-    }, 500); // Jump duration
+    }, 1000); // Jump duration updated to 1 second
   };
 
   useEffect(() => {
     const handleKeyDown = (e: KeyboardEvent) => {
+      if (e.repeat) return; // Prevent repeated jumping when key is held down
       if (e.code === "Space" || e.code === "ArrowUp") {
         e.preventDefault();
         jump();
@@ -124,9 +125,10 @@ export default function AnimeMiniGame() {
       {!isPlaying && !gameOver && (
         <div className="absolute inset-0 flex flex-col items-center justify-center bg-ink/80 z-20 backdrop-blur-sm">
           <Gamepad2 size={64} className="text-sunset-orange mb-4" />
-          <h3 className="font-display font-bold text-3xl uppercase mb-2 text-white shadow-glow">Anime Platformer</h3>
-          <p className="font-mono text-sm text-cream mb-8 text-center px-8">Press <span className="text-radiant-gold">SPACEBAR</span> or <span className="text-radiant-gold">UP ARROW</span> to jump over obstacles.<br/>Tap to play.</p>
-          <button onClick={startGame} className="flex items-center space-x-2 bg-sunset-orange text-white px-8 py-4 font-bold uppercase tracking-wider interactive hover:bg-orange-600 transition-colors shadow-[0_0_20px_rgba(249,115,22,0.5)]">
+          <h3 className="font-display font-bold text-3xl uppercase mb-2 text-white shadow-glow text-center">Anime Platformer</h3>
+          <p className="font-mono text-sm text-cream mb-8 text-center px-8 hidden md:block">Press <span className="text-radiant-gold">SPACEBAR</span> or <span className="text-radiant-gold">UP ARROW</span> to jump over obstacles.<br/>Tap to play.</p>
+          <p className="font-mono text-sm text-cream mb-8 text-center px-8 md:hidden">Tap anywhere to jump over obstacles.<br/>Tap to play.</p>
+          <button onClick={startGame} className="flex items-center space-x-2 bg-sunset-orange text-white px-8 py-4 font-bold uppercase tracking-wider interactive hover:bg-orange-600 transition-colors shadow-[0_0_20px_rgba(249,115,22,0.5)] z-30">
             <Play size={20} /> <span>Start Run</span>
           </button>
         </div>
@@ -152,7 +154,7 @@ export default function AnimeMiniGame() {
 
       {/* Click overlay for mobile jump */}
       {isPlaying && !gameOver && (
-          <div className="absolute inset-0 z-10" onClick={jump} />
+          <div className="absolute inset-0 z-20" onClick={jump} onTouchStart={(e) => { e.preventDefault(); jump(); }} />
       )}
 
       {/* Obstacles */}

@@ -29,7 +29,7 @@ export default function Hero() {
   }
 
   return (
-    <section className="min-h-screen relative flex flex-col lg:flex-row items-center justify-between px-8 lg:px-24 pt-32 pb-16 overflow-hidden">
+    <section className="min-h-screen relative flex flex-col lg:flex-row items-center justify-between px-4 md:px-8 lg:px-24 pt-32 pb-16 overflow-hidden">
       {/* Background Particle Effects mapped to character color */}
       <motion.div
         className={`absolute inset-0 bg-gradient-to-br from-[var(--theme-color)]/20 to-transparent pointer-events-none -z-10`}
@@ -55,7 +55,7 @@ export default function Hero() {
           <motion.h1
             initial={{ opacity: 0, x: -50 }}
             animate={{ opacity: 1, x: 0 }}
-            className="text-5xl lg:text-7xl font-display font-bold uppercase tracking-tighter"
+            className="text-4xl md:text-5xl lg:text-7xl font-display font-bold uppercase tracking-tighter"
           >
             Safwan <br />
             <span className="text-transparent bg-clip-text" style={{ backgroundImage: `linear-gradient(to right, ${selectedChar.color}, #fff)` }}>

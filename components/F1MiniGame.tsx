@@ -88,9 +88,10 @@ export default function F1MiniGame() {
       {!isPlaying && !gameOver && (
         <div className="absolute inset-0 flex flex-col items-center justify-center bg-ink/90 z-20 backdrop-blur-sm">
           <Flag size={64} className="text-ferrari mb-4" />
-          <h3 className="font-display font-bold text-3xl uppercase mb-2 text-white shadow-glow">F1 Grand Prix Module</h3>
-          <p className="font-mono text-sm text-cream mb-8 text-center px-8">Use <span className="text-radiant-gold">Left/Right</span> arrows to dodge barriers.<br/>Drive like Hamilton, Verstappen, or Senna.</p>
-          <button onClick={startGame} className="flex items-center space-x-2 bg-ferrari text-white px-8 py-4 font-bold uppercase tracking-wider interactive hover:bg-red-700 transition-colors shadow-[0_0_20px_rgba(225,6,0,0.5)]">
+          <h3 className="font-display font-bold text-3xl uppercase mb-2 text-white shadow-glow text-center">F1 Grand Prix Module</h3>
+          <p className="font-mono text-sm text-cream mb-8 text-center px-8 hidden md:block">Use <span className="text-radiant-gold">Left/Right</span> arrows to dodge barriers.<br/>Drive like Hamilton, Verstappen, or Senna.</p>
+          <p className="font-mono text-sm text-cream mb-8 text-center px-8 md:hidden">Tap <span className="text-radiant-gold">Left/Right</span> side of screen to dodge barriers.<br/>Drive like Hamilton, Verstappen, or Senna.</p>
+          <button onClick={startGame} className="flex items-center space-x-2 bg-ferrari text-white px-8 py-4 font-bold uppercase tracking-wider interactive hover:bg-red-700 transition-colors shadow-[0_0_20px_rgba(225,6,0,0.5)] z-30">
             <Play size={20} /> <span>Start Engine</span>
           </button>
         </div>
@@ -112,6 +113,14 @@ export default function F1MiniGame() {
         <div className="absolute top-4 right-4 z-10 font-mono font-bold text-radiant-gold text-xl bg-ink/50 px-3 py-1 rounded">
           {score}
         </div>
+      )}
+
+      {/* Touch overlays for mobile */}
+      {isPlaying && !gameOver && (
+        <>
+          <div className="absolute top-0 left-0 bottom-0 w-1/2 z-20" onTouchStart={(e) => { e.preventDefault(); if(carLane > 0) setCarLane(prev => prev - 1); }} onClick={() => { if(carLane > 0) setCarLane(prev => prev - 1); }} />
+          <div className="absolute top-0 right-0 bottom-0 w-1/2 z-20" onTouchStart={(e) => { e.preventDefault(); if(carLane < 2) setCarLane(prev => prev + 1); }} onClick={() => { if(carLane < 2) setCarLane(prev => prev + 1); }} />
+        </>
       )}
 
       {/* Obstacles */}
