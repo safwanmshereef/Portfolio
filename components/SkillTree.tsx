@@ -27,7 +27,7 @@ export default function SkillTree() {
   const [activeNode, setActiveNode] = useState<string | null>(null);
 
   return (
-    <section className="py-24 px-8 lg:px-24 relative border-t-2 border-slate/50">
+    <section className="py-24 px-4 md:px-8 lg:px-24 relative border-t-2 border-slate/50">
       <div className="absolute top-0 left-0 w-full h-full bg-dot-grid opacity-50 pointer-events-none -z-10" />
 
       <div className="mb-16">

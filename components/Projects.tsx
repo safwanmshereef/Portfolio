@@ -262,7 +262,7 @@ export default function Projects() {
   const activeProject = projects.find(p => p.id === selectedId);
 
   return (
-    <section className="py-24 px-8 lg:px-24 relative border-t-2 border-slate/50">
+    <section className="py-24 px-4 md:px-8 lg:px-24 relative border-t-2 border-slate/50">
       <div className="mb-16">
         <h2 className="text-4xl font-display font-bold uppercase tracking-widest flex items-center space-x-4">
           <FolderGit2 className="text-sunset-orange" />
@@ -310,7 +310,7 @@ export default function Projects() {
 
             <motion.div
               layoutId={`card-${activeProject.id}`}
-              className="w-full max-w-5xl max-h-[90vh] overflow-y-auto relative z-10 flex flex-col bg-[#0f1115] border border-[#1e293b] rounded-lg shadow-2xl custom-scrollbar"
+              className="w-full max-w-5xl max-h-[90vh] overflow-hidden relative z-10 flex flex-col bg-[#0f1115] border border-[#1e293b] rounded-lg shadow-2xl custom-scrollbar"
             >
               {/* Header Bar */}
               <div className="flex justify-between items-start p-6 border-b border-[#1e293b]">

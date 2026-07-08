@@ -9,7 +9,7 @@ export default function Lifestyle() {
   const [showGame, setShowGame] = useState(false);
 
   return (
-    <section className="py-24 px-8 lg:px-24 relative border-t-2 border-slate/50 min-h-screen">
+    <section className="py-24 px-4 md:px-8 lg:px-24 relative border-t-2 border-slate/50 min-h-screen">
       <div className="mb-16 flex justify-between items-end">
         <div>
           <h2 className="text-4xl font-display font-bold uppercase tracking-widest flex items-center space-x-4">

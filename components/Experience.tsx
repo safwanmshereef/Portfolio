@@ -5,7 +5,7 @@ import { Briefcase, Award, GraduationCap, Building2 } from "lucide-react";
 
 export default function Experience() {
   return (
-    <section className="py-24 px-8 lg:px-24 relative border-t-2 border-slate/50">
+    <section className="py-24 px-4 md:px-8 lg:px-24 relative border-t-2 border-slate/50">
       <div className="mb-16">
         <h2 className="text-4xl font-display font-bold uppercase tracking-widest flex items-center space-x-4">
           <Briefcase className="text-radiant-gold" />
@@ -35,19 +35,16 @@ export default function Experience() {
             <div className="relative z-10">
               <div className="flex justify-between items-start mb-2">
                 <h4 className="font-display font-bold text-xl" style={{ color: 'var(--theme-color)' }}>Software Engineer Intern</h4>
-                <span className="font-mono text-xs bg-neon-teal/10 text-neon-teal px-2 py-1 rounded">Feb 2026 – Present</span>
+                <span className="font-mono text-xs bg-neon-teal/10 text-neon-teal px-2 py-1 rounded">Jan 2026 – Present</span>
               </div>
-              <p className="font-mono text-sm text-sunset-orange mb-4">Freshivores • Bangalore</p>
+              <p className="font-mono text-sm text-sunset-orange mb-4">Freshivores • Bangalore, Karnataka (Onsite)</p>
 
               <ul className="space-y-3 font-mono text-sm text-cream/80 list-disc pl-4 marker:text-neon-teal">
                 <li>
-                  <strong className="text-cream">Full-Stack Store Operations:</strong> Engineered secure, RBAC-controlled enterprise operations portals utilizing FastAPI and React architectures.
+                  Architected and delivered <strong className="text-cream">5-10 asynchronous RESTful API endpoints</strong> using Python and FastAPI, ensuring low latency and reliability for core application features.
                 </li>
                 <li>
-                  <strong className="text-cream">Database Architecture Optimization:</strong> Analyzed, indexed, and structurally restructured complex relational PostgreSQL configurations, reducing enterprise query latency by 15%.
-                </li>
-                <li>
-                  <strong className="text-cream">Small Language Model Deployment:</strong> Trained, fine-tuned, and implemented a specialized, localized SLM framework for proprietary automation workflows.
+                  Integrated frontend interfaces with backend services; wrote type-safe code and <strong className="text-cream">optimized SQL queries</strong> to reduce technical debt and improve database performance.
                 </li>
               </ul>
             </div>
@@ -66,14 +63,11 @@ export default function Experience() {
                 <h4 className="font-display font-bold text-xl" style={{ color: 'var(--theme-color)' }}>Python Developer Intern</h4>
                 <span className="font-mono text-xs bg-radiant-gold/10 text-radiant-gold px-2 py-1 rounded">Sep 2024 – Apr 2025</span>
               </div>
-              <p className="font-mono text-sm text-sunset-orange mb-4">Singularis Software Technologies • Remote</p>
+              <p className="font-mono text-sm text-sunset-orange mb-4">Singularis Software Technologies • Kochi, Kerala (Hybrid)</p>
 
               <ul className="space-y-3 font-mono text-sm text-cream/80 list-disc pl-4 marker:text-radiant-gold">
                 <li>
-                  <strong className="text-cream">ETL Automation Engineering:</strong> Developed and optimized high-throughput Python-based ETL scripts, dramatically cutting down manual data engineering operations and processing overhead by 30%.
-                </li>
-                <li>
-                  <strong className="text-cream">Backend Pipeline Refactoring:</strong> Designed type-safe internal API utilities and integrated robust database querying layers to support high-availability business operations.
+                  Built scalable automation scripts using advanced Python (OOP, multithreading); applied <strong className="text-cream">Linear Regression</strong> for data trend prediction and automated CSV/Excel workflows, <strong className="text-cream">reducing manual effort by 30%</strong>.
                 </li>
               </ul>
             </div>
@@ -92,14 +86,11 @@ export default function Experience() {
                 <h4 className="font-display font-bold text-xl" style={{ color: 'var(--theme-color)' }}>AI & Computer Vision Intern</h4>
                 <span className="font-mono text-xs bg-sunset-orange/10 text-sunset-orange px-2 py-1 rounded">Apr 2023 – May 2023</span>
               </div>
-              <p className="font-mono text-sm text-sunset-orange mb-4">Techmaghi • Hybrid</p>
+              <p className="font-mono text-sm text-sunset-orange mb-4">Techmaghi • Kochi, Kerala (Hybrid)</p>
 
               <ul className="space-y-3 font-mono text-sm text-cream/80 list-disc pl-4 marker:text-sunset-orange">
                 <li>
-                  <strong className="text-cream">Computer Vision Deployment:</strong> Programmed, evaluated, and deployed high-accuracy object detection models utilizing TensorFlow and OpenCV pipelines.
-                </li>
-                <li>
-                  <strong className="text-cream">Edge Inference Optimization:</strong> Processed custom image datasets and algorithmically fine-tuned computer vision model thresholds for streamlined target tracking.
+                  Designed and deployed real-time object detection networks using <strong className="text-cream">TensorFlow and OpenCV</strong>; fine-tuned preprocessing pipelines, <strong className="text-cream">improving detection accuracy by 20%</strong>.
                 </li>
               </ul>
             </div>
