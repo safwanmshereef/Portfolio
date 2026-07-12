@@ -1,106 +1,210 @@
 "use client";
 
-import { useState, useEffect, useRef } from "react";
+import { useState, useEffect, useRef, useCallback } from "react";
 import { motion } from "framer-motion";
 import { Play, RefreshCw, Trophy, Gamepad2 } from "lucide-react";
+
+const GRAVITY = 0.8;
+const JUMP_VELOCITY = 15;
+const OBSTACLE_SPEED = 3.5;
+const GROUND_LEVEL = 40;
+const CHAR_LEFT = 50;
+const CHAR_WIDTH = 50;
+const CHAR_HEIGHT = 60;
+const OBSTACLE_WIDTH = 40;
+const OBSTACLE_HEIGHT = 40;
 
 export default function AnimeMiniGame() {
   const [isPlaying, setIsPlaying] = useState(false);
   const [gameOver, setGameOver] = useState(false);
   const [score, setScore] = useState(0);
-  const [isJumping, setIsJumping] = useState(false);
 
-  const [obstacles, setObstacles] = useState<{ id: number, left: number }[]>([]);
-
-  const gameLoopRef = useRef<NodeJS.Timeout | null>(null);
+  const containerRef = useRef<HTMLDivElement>(null);
   const characterRef = useRef<HTMLDivElement>(null);
+  const obstaclesContainerRef = useRef<HTMLDivElement>(null);
+
+  // Physics state
+  const charY = useRef(0);
+  const charVy = useRef(0);
+  const isJumping = useRef(false);
+  const obstacles = useRef<{ id: number; left: number }[]>([]);
+  const animationRef = useRef<number | null>(null);
+  const scoreRef = useRef(0);
+  const lastTime = useRef<number>(0);
+
+  // Ref-based game state to avoid stale closures in requestAnimationFrame
+  const gameStateRef = useRef<'stopped' | 'playing' | 'gameover'>('stopped');
 
   const startGame = () => {
+    // Update React state for UI
     setIsPlaying(true);
     setGameOver(false);
     setScore(0);
-    setObstacles([]);
-    setIsJumping(false);
+
+    // Update Ref state for physics loop
+    gameStateRef.current = 'playing';
+    scoreRef.current = 0;
+
+    charY.current = 0;
+    charVy.current = 0;
+    isJumping.current = false;
+    obstacles.current = [];
+
+    if (obstaclesContainerRef.current) {
+        obstaclesContainerRef.current.innerHTML = '';
+    }
+
+    if (characterRef.current) {
+        characterRef.current.style.bottom = `${GROUND_LEVEL}px`;
+        characterRef.current.style.transform = 'rotate(0deg)';
+    }
+
+    if (animationRef.current) {
+        cancelAnimationFrame(animationRef.current);
+    }
+
+    lastTime.current = performance.now();
+    animationRef.current = requestAnimationFrame(gameLoop);
   };
 
-  const jump = () => {
-    if (isJumping || !isPlaying || gameOver) return;
-    setIsJumping(true);
-    setTimeout(() => {
-      setIsJumping(false);
-    }, 1000); // Jump duration updated to 1 second
+  const jump = useCallback(() => {
+    if (isJumping.current || gameStateRef.current !== 'playing') return;
+    isJumping.current = true;
+    charVy.current = JUMP_VELOCITY;
+  }, []);
+
+  const gameLoop = (time: number) => {
+    if (gameStateRef.current !== 'playing') return;
+
+    if (isJumping.current) {
+      charVy.current -= GRAVITY;
+      charY.current += charVy.current;
+
+      if (charY.current <= 0) {
+        charY.current = 0;
+        charVy.current = 0;
+        isJumping.current = false;
+      }
+    }
+
+    if (characterRef.current) {
+      characterRef.current.style.bottom = `${GROUND_LEVEL + charY.current}px`;
+      characterRef.current.style.transform = charY.current > 0 ? 'rotate(-10deg)' : 'rotate(0deg)';
+    }
+
+    const containerWidth = containerRef.current?.clientWidth || 800;
+
+    // Spawn Obstacles
+    if (Math.random() < 0.015) { // Slightly reduced spawn rate
+      const lastObs = obstacles.current[obstacles.current.length - 1];
+      const minGap = containerWidth < 600 ? 300 : 400;
+
+      if (!lastObs || (containerWidth - lastObs.left) > minGap) {
+        const id = Date.now();
+        obstacles.current.push({ id, left: containerWidth });
+
+        if (obstaclesContainerRef.current) {
+            const el = document.createElement('div');
+            el.id = `obs-${id}`;
+            el.className = "absolute z-10 flex flex-col items-center justify-end animate-spin-slow";
+            el.style.left = `${containerWidth}px`;
+            el.style.bottom = `${GROUND_LEVEL}px`;
+            el.style.width = `${OBSTACLE_WIDTH}px`;
+            el.style.height = `${OBSTACLE_HEIGHT}px`;
+
+            const img = document.createElement('img');
+            img.src = "https://upload.wikimedia.org/wikipedia/commons/e/e0/Shuriken.svg";
+            img.className = "w-8 h-8 filter drop-shadow-[0_0_5px_#fff]";
+            el.appendChild(img);
+
+            obstaclesContainerRef.current.appendChild(el);
+        }
+      }
+    }
+
+    let currentScore = scoreRef.current;
+
+    for (let i = obstacles.current.length - 1; i >= 0; i--) {
+        const obs = obstacles.current[i];
+        obs.left -= OBSTACLE_SPEED;
+
+        const el = document.getElementById(`obs-${obs.id}`);
+        if (el) {
+            el.style.left = `${obs.left}px`;
+        }
+
+        const charRight = CHAR_LEFT + CHAR_WIDTH - 15;
+        const charLeftHitbox = CHAR_LEFT + 15;
+        const obsRight = obs.left + OBSTACLE_WIDTH - 10;
+        const obsLeftHitbox = obs.left + 10;
+
+        if (obsLeftHitbox < charRight && obsRight > charLeftHitbox) {
+            if (charY.current < OBSTACLE_HEIGHT - 10) {
+                endGame();
+                return;
+            }
+        }
+
+        if (obs.left < -50) {
+            obstacles.current.splice(i, 1);
+            if (el) el.remove();
+        }
+    }
+
+    if (time - lastTime.current > 100) {
+        currentScore += 1;
+        scoreRef.current = currentScore;
+        setScore(currentScore);
+        lastTime.current = time;
+    }
+
+    animationRef.current = requestAnimationFrame(gameLoop);
+  };
+
+  const endGame = () => {
+      gameStateRef.current = 'gameover';
+      setGameOver(true);
+      setIsPlaying(false);
+      if (animationRef.current) cancelAnimationFrame(animationRef.current);
   };
 
   useEffect(() => {
     const handleKeyDown = (e: KeyboardEvent) => {
-      if (e.repeat) return; // Prevent repeated jumping when key is held down
+      if (e.repeat) return;
       if (e.code === "Space" || e.code === "ArrowUp") {
         e.preventDefault();
         jump();
       }
     };
 
-    window.addEventListener("keydown", handleKeyDown);
+    window.addEventListener("keydown", handleKeyDown, { passive: false });
     return () => window.removeEventListener("keydown", handleKeyDown);
-  }, [isPlaying, gameOver, isJumping]);
+  }, [jump]);
 
   useEffect(() => {
-    if (isPlaying && !gameOver) {
-      gameLoopRef.current = setInterval(() => {
-        setScore(s => s + 1);
-
-        // Move obstacles left
-        setObstacles(prev => {
-          const updated = prev.map(obs => ({ ...obs, left: obs.left - 2 }));
-
-          // Collision Detection
-          // Character is fixed at left: 50px, width: 60px. Ground level is bottom: 0. Jump height brings bottom to ~100px.
-          // Obstacle width is ~30px.
-          const charLeft = 50;
-          const charRight = 110;
-
-          const collided = updated.some(obs => {
-            const obsLeft = obs.left;
-            const obsRight = obs.left + 30; // Approx obstacle width
-
-            // If horizontally overlapping
-            if (obsLeft < charRight && obsRight > charLeft) {
-              // If not jumping high enough (bottom of character during jump > obstacle height)
-              if (!isJumping) {
-                setGameOver(true);
-                return true;
-              }
-            }
-            return false;
-          });
-
-          // Filter out passed obstacles
-          return updated.filter(obs => obs.left > -50);
-        });
-
-        // Spawn new obstacle
-        if (Math.random() < 0.02) {
-          // Avoid spawning too close together
-          setObstacles(prev => {
-             const lastObs = prev[prev.length - 1];
-             if (!lastObs || lastObs.left < 800) {
-                 return [...prev, { id: Date.now(), left: 1000 }];
-             }
-             return prev;
-          });
-        }
-      }, 20); // Fast loop
-    } else if (gameLoopRef.current) {
-      clearInterval(gameLoopRef.current);
-    }
-
-    return () => {
-      if (gameLoopRef.current) clearInterval(gameLoopRef.current);
-    };
-  }, [isPlaying, gameOver, isJumping]);
+      return () => {
+          if (animationRef.current) cancelAnimationFrame(animationRef.current);
+      }
+  }, []);
 
   return (
-    <div className="w-full max-w-4xl mx-auto my-32 relative border-8 border-sunset-orange/50 rounded-lg overflow-hidden h-[400px] bg-[#0d1117] shadow-[0_0_40px_rgba(249,115,22,0.3)] interactive select-none">
+    <div
+        ref={containerRef}
+        className="w-full max-w-4xl mx-auto my-32 relative border-8 border-sunset-orange/50 rounded-lg overflow-hidden h-[400px] bg-[#0d1117] shadow-[0_0_40px_rgba(249,115,22,0.3)] interactive select-none touch-none"
+    >
+      <style dangerouslySetInnerHTML={{__html: `
+        @keyframes slide {
+          from { transform: translateX(0); }
+          to { transform: translateX(-50%); }
+        }
+        .animate-spin-slow {
+            animation: spin 0.5s linear infinite;
+        }
+        @keyframes spin {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+      `}} />
 
       {/* Title */}
       <div className="absolute top-0 left-1/2 -translate-x-1/2 -translate-y-full pb-4 text-center w-full z-30 pointer-events-none">
@@ -110,24 +214,23 @@ export default function AnimeMiniGame() {
       </div>
 
       {/* Dynamic Background Parallax */}
-      <div className="absolute inset-0 overflow-hidden opacity-80">
+      <div className="absolute inset-0 overflow-hidden opacity-80 pointer-events-none">
          <div className={`absolute bottom-0 w-[200%] h-full flex ${isPlaying && !gameOver ? 'animate-[slide_10s_linear_infinite]' : ''}`}>
              <div className="w-1/2 h-full flex items-center justify-center opacity-80" style={{ backgroundImage: "url('/assets/anime/konoha.jpg')", backgroundSize: 'cover', backgroundPosition: 'bottom' }}></div>
              <div className="w-1/2 h-full flex items-center justify-center opacity-80" style={{ backgroundImage: "url('/assets/anime/konoha.jpg')", backgroundSize: 'cover', backgroundPosition: 'bottom' }}></div>
          </div>
-         {/* Overlay to ensure text readability */}
          <div className="absolute inset-0 bg-black/40" />
       </div>
 
       {/* Floor */}
-      <div className="absolute bottom-0 w-full h-[40px] bg-[#3e2723] border-t-4 border-[#5d4037] shadow-[0_-5px_15px_rgba(0,0,0,0.5)]" />
+      <div className="absolute bottom-0 w-full h-[40px] bg-[#3e2723] border-t-4 border-[#5d4037] shadow-[0_-5px_15px_rgba(0,0,0,0.5)] pointer-events-none" />
 
       {!isPlaying && !gameOver && (
         <div className="absolute inset-0 flex flex-col items-center justify-center bg-ink/80 z-20 backdrop-blur-sm">
           <Gamepad2 size={64} className="text-sunset-orange mb-4" />
           <h3 className="font-display font-bold text-3xl uppercase mb-2 text-white shadow-glow text-center">Anime Platformer</h3>
-          <p className="font-mono text-sm text-cream mb-8 text-center px-8 hidden md:block">Press <span className="text-radiant-gold">SPACEBAR</span> or <span className="text-radiant-gold">UP ARROW</span> to jump over obstacles.<br/>Tap to play.</p>
-          <p className="font-mono text-sm text-cream mb-8 text-center px-8 md:hidden">Tap anywhere to jump over obstacles.<br/>Tap to play.</p>
+          <p className="font-mono text-sm text-cream mb-8 text-center px-8 hidden md:block">Press <span className="text-radiant-gold">SPACEBAR</span> or <span className="text-radiant-gold">UP ARROW</span> to jump.<br/>Tap to play.</p>
+          <p className="font-mono text-sm text-cream mb-8 text-center px-8 md:hidden">Tap anywhere to jump.<br/>Tap to play.</p>
           <button onClick={startGame} className="flex items-center space-x-2 bg-sunset-orange text-white px-8 py-4 font-bold uppercase tracking-wider interactive hover:bg-orange-600 transition-colors shadow-[0_0_20px_rgba(249,115,22,0.5)] z-30">
             <Play size={20} /> <span>Start Run</span>
           </button>
@@ -146,64 +249,44 @@ export default function AnimeMiniGame() {
       )}
 
       {/* Score */}
-      {isPlaying && (
+      {(isPlaying || gameOver) && (
         <div className="absolute top-4 right-4 z-10 font-mono font-bold text-radiant-gold text-2xl bg-ink/50 px-4 py-2 rounded border border-radiant-gold/30">
           {score}
         </div>
       )}
 
-      {/* Click overlay for mobile jump */}
+      {/* Click/Touch overlay for mobile jump */}
       {isPlaying && !gameOver && (
-          <div className="absolute inset-0 z-20" onClick={jump} onTouchStart={(e) => { e.preventDefault(); jump(); }} />
+          <div
+            className="absolute inset-0 z-20 cursor-pointer"
+            onPointerDown={(e) => {
+                e.preventDefault();
+                jump();
+            }}
+          />
       )}
 
-      {/* Obstacles */}
-      {obstacles.map(obs => (
-        <div
-          key={obs.id}
-          className="absolute bottom-[40px] z-10 flex flex-col items-center justify-end"
-          style={{
-            left: `${obs.left}px`,
-            width: '40px',
-            height: '40px',
-          }}
-        >
-          {/* Shuriken style obstacle */}
-          <motion.div
-             animate={{ rotate: isPlaying && !gameOver ? 360 : 0 }}
-             transition={{ duration: 0.3, repeat: Infinity, ease: "linear" }}
-             className="w-10 h-10 relative flex items-center justify-center"
-          >
-             <img src="https://upload.wikimedia.org/wikipedia/commons/e/e0/Shuriken.svg" alt="Shuriken" className="w-8 h-8 filter drop-shadow-[0_0_5px_#fff]" />
-          </motion.div>
-        </div>
-      ))}
+      {/* Obstacles Container (Managed manually for performance) */}
+      <div ref={obstaclesContainerRef} className="absolute inset-0 z-10 pointer-events-none" />
 
-      {/* Character (Naruto Sprite representation) */}
+      {/* Character */}
       <div
         ref={characterRef}
-        className="absolute w-[60px] h-[60px] z-10"
+        className="absolute z-10 pointer-events-none"
         style={{
-            left: '50px',
-            bottom: isJumping ? '140px' : '40px', // Jump height
-            transition: isJumping ? 'bottom 0.3s cubic-bezier(0.2, 0.8, 0.2, 1)' : 'bottom 0.2s cubic-bezier(0.8, 0.2, 0.8, 1)'
+            left: `${CHAR_LEFT}px`,
+            bottom: `${GROUND_LEVEL}px`,
+            width: `${CHAR_WIDTH}px`,
+            height: `${CHAR_HEIGHT}px`
         }}
       >
         <img
             src="/assets/anime/naruto.gif"
             alt="Naruto Runner"
             className={`w-full h-full object-contain filter drop-shadow-[0_0_8px_#f97316] ${isPlaying && !gameOver ? '' : 'grayscale opacity-50'}`}
-            style={{ transform: isJumping ? 'rotate(-10deg)' : 'rotate(0)' }}
         />
       </div>
 
-      <style dangerouslySetInnerHTML={{__html: `
-        @keyframes slide {
-          from { transform: translateX(0); }
-          to { transform: translateX(-50%); }
-          to { transform: translateX(-50%); }
-        }
-      `}} />
     </div>
   );
 }
