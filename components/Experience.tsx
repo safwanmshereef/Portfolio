@@ -67,7 +67,7 @@ export default function Experience() {
 
               <ul className="space-y-3 font-mono text-sm text-cream/80 list-disc pl-4 marker:text-cherry-pink">
                 <li>
-                  Administered and optimized <strong className="text-cream">PostgreSQL databases</strong>, writing complex queries to support dynamic website content and user activity tracking.
+                  Optimized <strong className="text-cream">PostgreSQL databases</strong>, writing queries to support dynamic website content and user activity tracking.
                 </li>
                 <li>
                   Engineered <strong className="text-cream">Python automation scripts</strong> to schedule daily data backups, perform data validation, and clean user activity logs, significantly reducing manual intervention.
