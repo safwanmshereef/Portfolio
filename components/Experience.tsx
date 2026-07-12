@@ -54,6 +54,32 @@ export default function Experience() {
             initial={{ opacity: 0, x: -20 }}
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true }}
+            className="manga-panel p-6 border-l-4 border-l-cherry-pink relative overflow-hidden mt-6"
+          >
+            <div className="absolute inset-0 opacity-[0.03] pointer-events-none" style={{ backgroundImage: 'var(--screentone)' }} />
+
+            <div className="relative z-10">
+              <div className="flex justify-between items-start mb-2">
+                <h4 className="font-display font-bold text-xl" style={{ color: 'var(--theme-color)' }}>Data Engineer Apprentice</h4>
+                <span className="font-mono text-xs bg-cherry-pink/10 text-cherry-pink px-2 py-1 rounded whitespace-nowrap ml-2">Jun 2025 – Dec 2025</span>
+              </div>
+              <p className="font-mono text-sm text-cherry-pink mb-4">Knowit Education • Kochi, Kerala (On-site)</p>
+
+              <ul className="space-y-3 font-mono text-sm text-cream/80 list-disc pl-4 marker:text-cherry-pink">
+                <li>
+                  Administered and optimized <strong className="text-cream">PostgreSQL databases</strong>, writing complex queries to support dynamic website content and user activity tracking.
+                </li>
+                <li>
+                  Engineered <strong className="text-cream">Python automation scripts</strong> to schedule daily data backups, perform data validation, and clean user activity logs, significantly reducing manual intervention.
+                </li>
+              </ul>
+            </div>
+          </motion.div>
+
+          <motion.div
+            initial={{ opacity: 0, x: -20 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            viewport={{ once: true }}
             className="manga-panel p-6 border-l-4 border-l-radiant-gold relative overflow-hidden mt-6"
           >
             <div className="absolute inset-0 opacity-[0.03] pointer-events-none" style={{ backgroundImage: 'var(--screentone)' }} />
@@ -61,7 +87,7 @@ export default function Experience() {
             <div className="relative z-10">
               <div className="flex justify-between items-start mb-2">
                 <h4 className="font-display font-bold text-xl" style={{ color: 'var(--theme-color)' }}>Python Developer Intern</h4>
-                <span className="font-mono text-xs bg-radiant-gold/10 text-radiant-gold px-2 py-1 rounded">Sep 2024 – Apr 2025</span>
+                <span className="font-mono text-xs bg-radiant-gold/10 text-radiant-gold px-2 py-1 rounded">Sep 2024 – Mar 2025</span>
               </div>
               <p className="font-mono text-sm text-sunset-orange mb-4">Singularis Software Technologies • Kochi, Kerala (Hybrid)</p>
 

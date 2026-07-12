@@ -28,7 +28,7 @@ export default function AnimeMiniGame() {
     setIsJumping(true);
     setTimeout(() => {
       setIsJumping(false);
-    }, 1000); // Jump duration updated to 1 second
+    }, 500); // Jump duration updated to 0.5 second
   };
 
   useEffect(() => {
@@ -186,7 +186,7 @@ export default function AnimeMiniGame() {
         style={{
             left: '50px',
             bottom: isJumping ? '140px' : '40px', // Jump height
-            transition: isJumping ? 'bottom 0.3s cubic-bezier(0.2, 0.8, 0.2, 1)' : 'bottom 0.2s cubic-bezier(0.8, 0.2, 0.8, 1)'
+            transition: isJumping ? 'bottom 0.25s cubic-bezier(0.2, 0.8, 0.2, 1)' : 'bottom 0.25s cubic-bezier(0.8, 0.2, 0.8, 1)'
         }}
       >
         <img
